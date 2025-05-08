@@ -31,4 +31,5 @@
   - How my application will be different:
 - Create wireframes and provide link for each page (minimum of 4-5 pages) including Home, About Me, Contact Us and 1-2 other pages demonstrating the specific functionality of your capstone's purpose
 - Create and provide link to User Flow Diagram
+  -The link for the User Flow Diagram is https://github.com/lora7142/Capstone/blob/master/docs/Lora%20Capstone.drawio
 - Create and provide link to [SWOT Analysis](https://docs.google.com/document/d/1K5ix6TZr2l2LnPKNnVj8PRzfkQoVlEwFBbynrA5aj44/edit?usp=sharing)
