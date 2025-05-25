@@ -7,6 +7,9 @@ function goToUpdateDeletePage() {
 function goToReportPage() {
   window.location.href = "Report.html";
 }
+function goToSearchPage() {
+  window.location.href = "Search.html";
+}
 function goToAboutPage() {
   window.location.href = "About.html";
 }

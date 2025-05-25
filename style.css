@@ -52,3 +52,8 @@ button {
   padding: 10px 15px;
   border-radius: 5px;
 }
+footer {
+  height: 50px;
+  background-color: #72B01D;
+  margin-top: 50px;
+}
