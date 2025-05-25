@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home Inventory Management - Lawn and Garden</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!-- Build an <index.html> page with these sections: <header>, <nav>, <main>, and <footer> -->
+  <nav class="navigation">
+    <a class="active" href="index.html">Home</a>
+    <a href="Add.html">Add</a>
+    <a href="UpdateDelete.html">Update/Delete</a>
+    <a href="Report.html">Report/Search</a>
+    <a href="About.html">About</a>
+    <a href="Contact.html">Contact</a>
+  </nav>
+  <header><h1>Welcome to the Home Inventory Manager - Lawn and Garden Edition</h1></header>
+  <main>
+    <h3 class="indexH3">What would you like to do?</h3>
+<table class="tableButtons">
+  <tr>
+    <td><button onclick="goToAddPage()">Add</button></td>
+    <td><button onclick="goToUpdateDeletePage()">Update/Delete</button></td>
+    <td><button onclick="goToReportPage()">Report</button></td>
+    <td><button onclick="goToSearchPage()">Search</button></td>
+    <td><button onclick="goToAboutPage()">About</button></td>
+    <td><button onclick="goToContactPage()">Contact</button></td>
+  </tr>
+</table>
+    <h4 class="indexH4">Today looks like a great day to be outside!</h4>
+  </main>
+  <footer>
+
+  </footer>
+  <script src="index.js"></script>
+</body>
+</html>
