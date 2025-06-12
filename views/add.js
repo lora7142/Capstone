@@ -2,7 +2,9 @@ import html from "html-literal";
 
 export default () => html`
   <section id="add">
-    <form>
+    <!-- need to configure the POST to DB when I learn more about DBs -->
+    <!-- Will look something like this: <form id="order" method="POST" action="https://sc-pizza-api.onrender.com/pizzas/form"> -->
+    <form id="add" method="POST">
       <div>
         <h3>Main Item Information</h3>
       </div>
