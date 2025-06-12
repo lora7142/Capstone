@@ -1,5 +1,5 @@
 import html from "html-literal";
-import LoraProfile from "url:../assets/img/profile.jpg";
+import LoraProfile from "url:../assets/img/profile.png";
 
 export default () => html`
   <section id="about">
