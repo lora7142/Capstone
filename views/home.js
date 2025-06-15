@@ -1,4 +1,5 @@
 import html from "html-literal";
+import links from "../store/links.js";
 
 export default state => html`
   <section id="home">
@@ -13,11 +14,31 @@ export default state => html`
     <table class="tableButtons">
       <tr class="flex-container">
         <!-- need to figure out the code for buttons to go to different sections -->
-        <td><button>Add</button></td>
-        <td><button>Update/Delete</button></td>
-        <td><button>Report/Search</button></td>
-        <td><button>About</button></td>
-        <td><button>Contact</button></td>
+        <td class="button">
+          <a href="${links[1].text}" title="${links[1].url}"
+            >${links[1].text}</a
+          >
+        </td>
+        <td class="button">
+          <a href="${links[2].text}" title="${links[2].url}"
+            >${links[2].text}</a
+          >
+        </td>
+        <td class="button">
+          <a href="${links[3].text}" title="${links[3].url}"
+            >${links[3].text}</a
+          >
+        </td>
+        <td class="button">
+          <a href="${links[4].text}" title="${links[4].url}"
+            >${links[4].text}</a
+          >
+        </td>
+        <td class="button">
+          <a href="${links[5].text}" title="${links[5].url}"
+            >${links[5].text}</a
+          >
+        </td>
       </tr>
     </table>
   </section>

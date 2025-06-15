@@ -4,12 +4,13 @@
 body {
   font-family: "Roboto", sans-serif;
 }
-button {
+.button a {
   background-color: #72B01D;
   color: #F3EFF5;
   margin: 15px;
   padding: 10px 15px;
   border-radius: 5px;
+  text-decoration: none;
 }
 .fa-bars{
 color: #F3EFF5;
