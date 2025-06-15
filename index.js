@@ -1,4 +1,4 @@
-import { header, nav, main, footer } from "./components";
+import { header, nav, main, footer, buttons } from "./components";
 import * as store from "./store";
 import Navigo from "navigo";
 import { camelCase } from "lodash";
@@ -52,19 +52,18 @@ router.hooks({
 
       case "report":
         // New Axios get request utilizing already made environment variable
-        axios
-        // need to change this to my own DB when I learn how to connect
-          .get(`https://sc-pizza-api.onrender.com/pizzas`)
-          .then(response => {
-            // We need to store the response to the state, in the next step but in the meantime let's see what it looks like so that we know what to store from the response.
-            console.log("response", response);
-            store.report.reports = response.data;
-            done();
-          })
-          .catch((error) => {
-            console.log("It puked", error);
-            done();
-          });
+        // axios
+        // // need to change this to my own DB when I learn how to connect
+        //   .get(`https://sc-pizza-api.onrender.com/pizzas`)
+        //   .then(response => {
+        //     console.log("response", response);
+        //     store.report.reports = response.data;
+        //     done();
+        //   })
+        //   .catch((error) => {
+        //     console.log("It puked", error);
+        //     done();
+        //   });
           break;
       default:
         // We must call done for all views so we include default for the views that don't have cases above.
@@ -109,23 +108,3 @@ router.on({
     }
   }
 }).resolve();
-
-// need to fix this for the buttons. Maybe re-write using nav code I already have and restyle
-// function goToAddPage() {
-//   window.location.href = "/add";
-// }
-// function goToUpdateDeletePage() {
-//   window.location.href = "/updateDelete";
-// }
-// function goToReportPage() {
-//   window.location.href = "/report";
-// }
-// function goToSearchPage() {
-//   window.location.href = "Search.html";
-// }
-// function goToAboutPage() {
-//   window.location.href = "/about";
-// }
-// function goToContactPage() {
-//   window.location.href = "/contact";
-// }
