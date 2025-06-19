@@ -2,9 +2,19 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
+import mongoose from "mongoose";
 
 // Load environment variables from .env file
 dotenv.config();
+
+mongoose.connect(process.env.MONGODB);
+const db = mongoose.connection;
+
+db.on("error", console.error.bind(console, "Connection Error:"));
+db.once(
+  "open",
+  console.log.bind(console, "Successfully opened connection to Mongo!")
+);
 
 // get the PORT from the environment variables, OR use 3000 as default
 const PORT = process.env.PORT || 3000;
