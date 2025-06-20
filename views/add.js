@@ -2,6 +2,7 @@ import html from "html-literal";
 
 export default () => html`
   <section id="add">
+    <h1>Add</h1>
     <!-- need to configure the POST to DB when I learn more about DBs -->
     <!-- Will look something like this: <form id="order" method="POST" action="https://sc-pizza-api.onrender.com/pizzas/form"> -->
     <form id="add" method="POST">
@@ -49,33 +50,37 @@ export default () => html`
           />
           <label for="requiredMaintenance">Required Maintenance</label>
         </div>
-        <div>
-          <label for="frequencyOfMaintenance">Frequency of Maintenance:</label>
-          <select name="frequencyOfMaintenance" id="frequencyOfMaintenance">
-            <option value=""></option>
-            <option value="Weekly">Weekly</option>
-            <option value="Monthly">Monthly</option>
-            <option value="Every 3 Months">Every 3 Months</option>
-            <option value="Every 4 Months">Every 3 Months</option>
-            <option value="Every 6 Months">Every 3 Months</option>
-            <option value="Yearly">Yearly</option>
-            <option value="Other">Other</option>
-          </select>
-        </div>
-        <div>
-          <label for="maintenanceDate">Maintenance Date:</label>
-          <input type="date" id="maintenanceDate" name="trip-start" />
-        </div>
-        <div>
-          <label for="listOfPastMaintenanceDates"
-            >List of Past Maintenance Dates:</label
-          >
-          <textarea
-            name="listOfPastMaintenanceDates"
-            id="listOfPastMaintenanceDates"
-            cols="30"
-            rows="5"
-          ></textarea>
+        <div id="requiredMaintenanceHidden">
+          <div>
+            <label for="frequencyOfMaintenance"
+              >Frequency of Maintenance:</label
+            >
+            <select name="frequencyOfMaintenance" id="frequencyOfMaintenance">
+              <option value=""></option>
+              <option value="Weekly">Weekly</option>
+              <option value="Monthly">Monthly</option>
+              <option value="Every 3 Months">Every 3 Months</option>
+              <option value="Every 4 Months">Every 3 Months</option>
+              <option value="Every 6 Months">Every 3 Months</option>
+              <option value="Yearly">Yearly</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div>
+            <label for="maintenanceDate">Maintenance Date:</label>
+            <input type="date" id="maintenanceDate" name="trip-start" />
+          </div>
+          <div>
+            <label for="listOfPastMaintenanceDates"
+              >List of Past Maintenance Dates:</label
+            >
+            <textarea
+              name="listOfPastMaintenanceDates"
+              id="listOfPastMaintenanceDates"
+              cols="30"
+              rows="5"
+            ></textarea>
+          </div>
         </div>
         <div>
           <label for="LastMaintenanceType">Last Maintenance Type:</label>
@@ -150,53 +155,65 @@ export default () => html`
       <div>
         <h3>Secondary Item Information</h3>
       </div>
-      <div class="secondaryItem">
+      <div id="SecondaryItemHidden">
         <div>
-          <label for="additionalItemRelated">Additional Item Related:</label>
           <input
-            type="text"
-            name="additionalItemRelated"
-            id="additionalItemRelated"
+            type="checkbox"
+            name="requiredSecondaryItem"
+            value="optin"
+            id="requiredSecondaryItem"
+            unchecked
           />
+          <label for="requiredSecondaryItem">Required Secondary Item</label>
         </div>
-        <div>
-          <label for="additionalItemMaker">Additional Item Maker:</label>
-          <input
-            type="text"
-            name="additionalItemMaker"
-            id="additionalItemMaker"
-          />
-        </div>
-        <div>
-          <label for="additionalItemModelNumber"
-            >Additional Item Model Number:</label
-          >
-          <input
-            type="text"
-            name="additionalItemModelNumber"
-            id="additionalItemModelNumber"
-          />
-        </div>
-        <div>
-          <label for="additionalItemSerialNumber"
-            >Additional Item Serial Number:</label
-          >
-          <input
-            type="text"
-            name="additionalItemSerialNumber"
-            id="additionalItemSerialNumber"
-          />
-        </div>
-        <div>
-          <label for="additionalAttachmentsForItem"
-            >Additional Attachments for Item:</label
-          >
-          <textarea
-            name="additionalAttachmentsForItem"
-            id="additionalAttachmentsForItem"
-            cols="30"
-            rows="5"
-          ></textarea>
+        <div class="secondaryItem">
+          <div>
+            <label for="secondaryItemRelated">Secondary Item Related:</label>
+            <input
+              type="text"
+              name="secondaryItemRelated"
+              id="secondaryItemRelated"
+            />
+          </div>
+          <div>
+            <label for="secondaryItemMaker">Secondary Item Maker:</label>
+            <input
+              type="text"
+              name="secondaryItemMaker"
+              id="secondaryItemMaker"
+            />
+          </div>
+          <div>
+            <label for="secondaryItemModelNumber"
+              >Secondary Item Model Number:</label
+            >
+            <input
+              type="text"
+              name="SecondaryItemModelNumber"
+              id="secondaryItemModelNumber"
+            />
+          </div>
+          <div>
+            <label for="secondaryItemSerialNumber"
+              >Secondary Item Serial Number:</label
+            >
+            <input
+              type="text"
+              name="secondaryItemSerialNumber"
+              id="secondaryItemSerialNumber"
+            />
+          </div>
+          <div>
+            <label for="secondaryAttachmentsForItem"
+              >Secondary Attachments for Item:</label
+            >
+            <textarea
+              name="secondaryAttachmentsForItem"
+              id="secondaryAttachmentsForItem"
+              cols="30"
+              rows="5"
+            ></textarea>
+          </div>
         </div>
         <div>
           <label for="notes">Notes:</label>
