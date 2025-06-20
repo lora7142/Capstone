@@ -64,6 +64,7 @@ router.hooks({
         //     console.log("It puked", error);
         //     done();
         //   });
+          done();
           break;
       default:
         // We must call done for all views so we include default for the views that don't have cases above.
