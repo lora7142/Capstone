@@ -50,7 +50,7 @@ export default () => html`
           />
           <label for="requiredMaintenance">Required Maintenance</label>
         </div>
-        <div id="requiredMaintenanceHidden">
+        <div id="requiredMaintenanceToggle">
           <div>
             <label for="frequencyOfMaintenance"
               >Frequency of Maintenance:</label
@@ -149,23 +149,23 @@ export default () => html`
         </div>
         <div>
           <label for="dateAcquired">Date Acquired:</label>
-          <input type="date" id="dateAcquired" name="trip-start" />
+          <input type="date" id="dateAcquired" name="dateAcquired" />
         </div>
       </div>
       <div>
         <h3>Secondary Item Information</h3>
       </div>
-      <div id="SecondaryItemHidden">
-        <div>
-          <input
-            type="checkbox"
-            name="requiredSecondaryItem"
-            value="optin"
-            id="requiredSecondaryItem"
-            unchecked
-          />
-          <label for="requiredSecondaryItem">Required Secondary Item</label>
-        </div>
+      <div>
+        <input
+          type="checkbox"
+          name="requiredSecondaryItem"
+          value="optin"
+          id="requiredSecondaryItem"
+          unchecked
+        />
+        <label for="requiredSecondaryItem">Required Secondary Item</label>
+      </div>
+      <div id="secondaryItemToggle">
         <div class="secondaryItem">
           <div>
             <label for="secondaryItemRelated">Secondary Item Related:</label>
@@ -215,10 +215,10 @@ export default () => html`
             ></textarea>
           </div>
         </div>
-        <div>
-          <label for="notes">Notes:</label>
-          <textarea name="notes" id="notes" cols="30" rows="5"></textarea>
-        </div>
+      </div>
+      <div>
+        <label for="notes">Notes:</label>
+        <textarea name="notes" id="notes" cols="30" rows="5"></textarea>
       </div>
       <div>
         <input type="submit" class="submit" value="Submit" />
