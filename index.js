@@ -8,10 +8,10 @@ const router = new Navigo("/");
 
 function render(state = store.home) {
   document.querySelector("#root").innerHTML = `
-      ${header(state)}
-      ${nav(store.links)}
-      ${main(state)}
-      ${footer()}
+  ${header(state)}
+    ${nav(store.links)}
+    ${main(state)}
+    ${footer()}
     `;
 
     router.updatePageLinks();
@@ -78,12 +78,82 @@ router.hooks({
     render(store[view]);
   },
   after: (match) => {
+    const view = match?.data?.view ? camelCase(match.data.view) : "home";
+
     router.updatePageLinks();
+
+    // event listener to show/hide requires maintenance and second item sections
+    document.addEventListener('DOMContentLoaded', function() {
+      const toggleRequiredMaintenance = document.getElementById('requiredMaintenance');
+      const requiredMaintenanceFieldsVisibility = document.getElementById('requiredMaintenanceToggle');
+
+      toggleRequiredMaintenance.addEventListener('change', function() {
+        if (this.checked) {
+          requiredMaintenanceFieldsVisibility.style.display = 'block';
+        }
+        else {
+          requiredMaintenanceFieldsVisibility.style.display = 'none';
+        }
+      });
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+      const toggleRequiredSecondaryItem = document.getElementById('requiredSecondaryItem');
+      const requiredSecondaryItemVisibility = document.getElementById('secondaryItemToggle');
+
+      toggleRequiredSecondaryItem.addEventListener('change', function() {
+      if(this.checked) {
+        requiredSecondaryItemVisibility.style.display = 'block';
+      }
+      else {
+        requiredSecondaryItemVisibility.style.display = 'none';
+      }
+      });
+    });
 
     // add menu toggle to bars icon in nav bar
     document.querySelector(".fa-bars").addEventListener("click", () => {
         document.querySelector("nav > ul").classList.toggle("hidden--mobile");
     });
+
+    if (view === "add") {
+      document.querySelector("form").addEventListener("submit", event => {
+        event.preventDefault();
+
+        const inputList = event.target.elements;
+        console.log("Input Element List", inputList);
+
+        // list of form fields
+        const requestData = {
+          itemName: inputList.itemName.value,
+          itemMaker: inputList.itemMaker.value,
+          itemModel: inputList.itemModel.value,
+          serialNumber: inputList.serialNumber.value,
+          modelNumber: inputList.modelNumber.value,
+          itemPowerType: inputList.itemPowerType.value,
+          requiredMaintenance: inputList.requiredMaintenance.value,
+          frequencyOfMaintenance: inputList.frequencyOfMaintenance.value,
+          maintenanceDate:  inputList.maintenanceDate.value,
+          listOfPastMaintenanceDates: inputList.listOfPastMaintenanceDates.value,
+          lastMaintenanceType: inputList.lastMaintenanceType.value,
+          partsReplaced: inputList.partsReplaced.value,
+          partsAcquiredFromBusinessName: inputList.partsAcquiredFromBusinessName.value,
+          partsAcquiredFromBusinessURL: inputList.partsAcquiredFromBusinessURL.value,
+          itemManualURL: inputList.itemManualURL.value,
+          dateAcquired: inputList.dateAcquired.value,
+          requiredSecondaryItem: inputList.requiredSecondaryItem.value,
+          secondaryItemRelated: inputList.secondaryItemRelated.value,
+          secondaryItemMaker: inputList.secondaryItemMaker.value,
+          secondaryItemModelNumber: inputList.secondaryItemModelNumber.value,
+          secondaryItemSerialNumber: inputList.secondaryItemSerialNumber.value,
+          secondaryAttachmentsForItem: inputList.secondaryAttachmentsForItem.value,
+          notes: inputList.notes.value
+        };
+        console.log("Request Body", requestData);
+
+        // need axios post for DB API
+      });
+    }
   }
 });
 
