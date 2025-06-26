@@ -79,7 +79,8 @@ main {
 }
 .mainImage {
   opacity: 65%;
-  border-radius: 40px;
+  border-top-right-radius: 100px;
+  border-bottom-left-radius: 100px;
   padding-top: 25px;
   width: 500px;
 }
