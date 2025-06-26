@@ -3,10 +3,12 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
+import items from "./controllers/items.js";
 
 // Load environment variables from .env file
 dotenv.config();
 
+// connect to Mongo DB via Mongoose
 mongoose.connect(process.env.MONGODB);
 const db = mongoose.connection;
 
@@ -36,7 +38,7 @@ app.use(logging);
 
 // Handle the request with HTTP GET method from http://localhost:3000/
 app.get("/", (request, response) => {
-  response.send("Welcome to the Class SPA REST API");
+  response.send("Welcome to the Capstone SPA REST API");
 });
 
 // Handle the request with HTTP GET method from http://localhost:3000/status
@@ -46,6 +48,9 @@ app.get("/status", (request, response) => {
   // End and return the response
   response.json({ message: "Service healthy" });
 });
+
+// handles any URL hat starts with "/items" ie http://localhost:3000/items
+app.use("/items", items);
 
 // Tell the Express app to start listening
 // Let the humans know I am running and listening on 3000

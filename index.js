@@ -22,6 +22,7 @@ router.hooks({
   // The `match` parameter is the data that is passed from Navigo to the before hook handler with details about the route being accessed.
   // https://github.com/krasimir/navigo/blob/master/DOCUMENTATION.md#match
   before: (done, match) => {
+    console.info("Before hook executing");
     // We need to know what view we are on to know what data to fetch
     const view = match?.data?.view ? camelCase(match.data.view) : "home";
     // Add a switch case statement to handle multiple routes
@@ -49,7 +50,21 @@ router.hooks({
         done();
       });
       break;
-
+      case "item":
+              // New Axios get request utilizing already made environment variable
+              axios
+                .get(`${process.env.ITEM_API_URL}/items`)
+                .then(response => {
+                  // We need to store the response to the state, in the next step but in the meantime let's see what it looks like so that we know what to store from the response.
+                  console.log("response", response);
+                  store.item.items = response.data;
+                  done();
+                })
+                .catch((error) => {
+                  console.log("It puked", error);
+                  done();
+                });
+                break;
       case "report":
         // New Axios get request utilizing already made environment variable
         // axios
@@ -78,11 +93,14 @@ router.hooks({
     render(store[view]);
   },
   after: (match) => {
+    console.log("After hook executing");
     const view = match?.data?.view ? camelCase(match.data.view) : "home";
 
-    router.updatePageLinks();
+    // only run on page that has form on it
+    // create additional if statement for each view that uses a form. possibly target it by form id
+    if (view === "add") {
 
-    // event listener to show/hide requires maintenance and second item sections
+    // event listener to show/hide requires maintenance
     document.addEventListener('DOMContentLoaded', function() {
       const toggleRequiredMaintenance = document.getElementById('requiredMaintenance');
       const requiredMaintenanceFieldsVisibility = document.getElementById('requiredMaintenanceToggle');
@@ -97,6 +115,7 @@ router.hooks({
       });
     });
 
+     // event listener to show/hide second item sections
     document.addEventListener('DOMContentLoaded', function() {
       const toggleRequiredSecondaryItem = document.getElementById('requiredSecondaryItem');
       const requiredSecondaryItemVisibility = document.getElementById('secondaryItemToggle');
@@ -111,19 +130,15 @@ router.hooks({
       });
     });
 
-    // add menu toggle to bars icon in nav bar
-    document.querySelector(".fa-bars").addEventListener("click", () => {
-        document.querySelector("nav > ul").classList.toggle("hidden--mobile");
-    });
-
-    if (view === "add") {
+    // Add an event handler for the submit button on the form
       document.querySelector("form").addEventListener("submit", event => {
         event.preventDefault();
 
+        // Get the form elements
         const inputList = event.target.elements;
         console.log("Input Element List", inputList);
 
-        // list of form fields
+        // Create a request body object to send to the API - list of form fields
         const requestData = {
           itemName: inputList.itemName.value,
           itemMaker: inputList.itemMaker.value,
@@ -149,11 +164,29 @@ router.hooks({
           secondaryAttachmentsForItem: inputList.secondaryAttachmentsForItem.value,
           notes: inputList.notes.value
         };
+        // Log the request body to the console
         console.log("Request Body", requestData);
 
-        // need axios post for DB API
+    axios
+      // Make a POST request to the API to create a new item
+      .post(`${process.env.ITEM_API_URL}/items`, requestData)
+      .then(response => {
+      //  Then push the new item onto the Item state items attribute, so it can be displayed in the item list
+        store.item.items.push(response.data);
+        router.navigate("/add");
+      })
+      // If there is an error log it to the console
+      .catch(error => {
+        console.log("It puked", error);
       });
-    }
+    })
+  }
+      router.updatePageLinks();
+
+    // add menu toggle to bars icon in nav bar
+    document.querySelector(".fa-bars").addEventListener("click", () => {
+        document.querySelector("nav > ul").classList.toggle("hidden--mobile");
+    });
   }
 });
 
@@ -178,4 +211,4 @@ router.on({
       console.log(`View ${view} not defined`);
     }
   }
-}).resolve();
+}).resolve(); // fires Navigo off
