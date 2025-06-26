@@ -64,7 +64,7 @@ header {
 }
 .indexH3 {
   text-align: center;
-  padding: 75px 0 75px 0;
+  padding: 25px 0 75px 0;
 }
 .indexH4 {
   text-align: center;
@@ -76,6 +76,12 @@ header {
 main {
   margin: 0 25px 0 25px;
   padding-left: 20px;
+}
+.mainImage {
+  opacity: 65%;
+  border-radius: 40px;
+  padding-top: 25px;
+  width: 500px;
 }
 .mainItem {
 display: grid;

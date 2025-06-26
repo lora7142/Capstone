@@ -1,5 +1,6 @@
 import html from "html-literal";
 import links from "../store/links.js";
+import lawnmower from "url:../assets/img/pexels-clickerhappy-589.jpg";
 
 export default state => html`
   <section id="home">
@@ -10,6 +11,7 @@ export default state => html`
       ${state.weather.feelsLike}&deg;F.
     </h3>
     <h4 class="indexH4">Today looks like a great day to be outside!</h4>
+    <img class="mainImage" src="${lawnmower}" alt="lawnmower" />
     <h3 class="indexH3">What would you like to do?</h3>
     <table class="tableButtons">
       <tr class="flex-container">
