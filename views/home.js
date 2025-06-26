@@ -4,7 +4,7 @@ import lawnmower from "url:../assets/img/pexels-clickerhappy-589.jpg";
 
 export default state => html`
   <section id="home">
-    <h2>Weather API goes here</h2>
+    <h2>Home Inventory Management - Lawn and Garden Edition</h2>
     <h3>
       The weather in ${state.weather.city} is ${state.weather.description}.
       Temperature is ${state.weather.temp}&deg;F, and it feels like
