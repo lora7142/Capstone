@@ -3,11 +3,11 @@ import html from "html-literal";
 export default () => html`
   <section id="add">
     <h1>Add</h1>
-    <!-- need to configure the POST to DB when I learn more about DBs -->
+    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@need to configure the POST to DB when I learn more about DBs -->
     <!-- Will look something like this: <form id="order" method="POST" action="https://sc-pizza-api.onrender.com/pizzas/form"> -->
     <form id="add" method="POST">
       <div>
-        <h3>Main Item Information</h3>
+        <h2>Main Item Information</h2>
       </div>
       <div class="mainItem">
         <div>
@@ -32,7 +32,7 @@ export default () => html`
         </div>
         <div>
           <label for="itemPowerType">Item Power Type:</label>
-          <select name="itemPowerType" id="itemPowerType" required>
+          <select name="itemPowerType" id="itemPowerType" required size="1">
             <option value=""></option>
             <option value="Battery">Battery</option>
             <option value="Electric">Electric</option>
@@ -44,7 +44,7 @@ export default () => html`
           <input
             type="checkbox"
             name="requiredMaintenance"
-            value="optin"
+            value="checked"
             id="requiredMaintenance"
             unchecked
           />
@@ -55,13 +55,17 @@ export default () => html`
             <label for="frequencyOfMaintenance"
               >Frequency of Maintenance:</label
             >
-            <select name="frequencyOfMaintenance" id="frequencyOfMaintenance">
+            <select
+              name="frequencyOfMaintenance"
+              id="frequencyOfMaintenance"
+              size="1"
+            >
               <option value=""></option>
               <option value="Weekly">Weekly</option>
               <option value="Monthly">Monthly</option>
               <option value="Every 3 Months">Every 3 Months</option>
-              <option value="Every 4 Months">Every 3 Months</option>
-              <option value="Every 6 Months">Every 3 Months</option>
+              <option value="Every 4 Months">Every 4 Months</option>
+              <option value="Every 6 Months">Every 6 Months</option>
               <option value="Yearly">Yearly</option>
               <option value="Other">Other</option>
             </select>
@@ -84,7 +88,12 @@ export default () => html`
         </div>
         <div>
           <label for="LastMaintenanceType">Last Maintenance Type:</label>
-          <select name="LastMaintenanceType" id="LastMaintenanceType" multiple>
+          <select
+            name="LastMaintenanceType"
+            id="LastMaintenanceType"
+            multiple
+            size="1"
+          >
             <option value=""></option>
             <option value="Battery">Battery</option>
             <option value="Belt">Belt</option>
@@ -102,7 +111,7 @@ export default () => html`
         </div>
         <div>
           <label for="partsReplaced">Parts Replaced:</label>
-          <select name="partsReplaced" id="partsReplaced" multiple>
+          <select name="partsReplaced" id="partsReplaced" multiple size="1">
             <option value=""></option>
             <option value="Air Filter">Air Filter</option>
             <option value="Battery">Battery</option>
@@ -153,13 +162,13 @@ export default () => html`
         </div>
       </div>
       <div>
-        <h3>Secondary Item Information</h3>
+        <h2>Secondary Item Information</h2>
       </div>
       <div>
         <input
           type="checkbox"
           name="requiredSecondaryItem"
-          value="optin"
+          value="checked"
           id="requiredSecondaryItem"
           unchecked
         />
@@ -210,15 +219,15 @@ export default () => html`
             <textarea
               name="secondaryAttachmentsForItem"
               id="secondaryAttachmentsForItem"
-              cols="30"
-              rows="5"
+              cols="40"
+              rows="1"
             ></textarea>
           </div>
         </div>
       </div>
-      <div>
+      <div class="notes">
         <label for="notes">Notes:</label>
-        <textarea name="notes" id="notes" cols="30" rows="5"></textarea>
+        <textarea name="notes" id="notes" cols="40" rows="1"></textarea>
       </div>
       <div>
         <input type="submit" class="submit" value="Submit" />
