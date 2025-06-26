@@ -11,15 +11,15 @@ export default () => html`
       </div>
       <div class="mainItem">
         <div>
-          <label for="itemName">Item Name:</label>
+          <label for="itemName">Item Name*:</label>
           <input type="text" name="itemName" id="itemName" required />
         </div>
         <div>
-          <label for="itemMaker">Item Maker:</label>
+          <label for="itemMaker">Item Maker*:</label>
           <input type="text" name="itemMaker" id="itemMaker" required />
         </div>
         <div>
-          <label for="itemModel">Item Model:</label>
+          <label for="itemModel">Item Model*:</label>
           <input type="text" name="itemModel" id="itemModel" required />
         </div>
         <div>
@@ -31,7 +31,7 @@ export default () => html`
           <input type="text" name="modelNumber" id="modelNumber" />
         </div>
         <div>
-          <label for="itemPowerType">Item Power Type:</label>
+          <label for="itemPowerType">Item Power Type*:</label>
           <select name="itemPowerType" id="itemPowerType" required size="1">
             <option value=""></option>
             <option value="Battery">Battery</option>
