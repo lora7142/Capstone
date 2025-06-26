@@ -43,12 +43,13 @@ const itemSchema = new mongoose.Schema({
       "Every 4 Months",
       "Every 6 Months",
       "Yearly",
-      "Other"
+      "Other",
+      "None"
     ]
   },
   maintenanceDate: {
     type: String,
-    validate: /^[A-Za-z0-9 ]*$/
+    validate: /\d{1,2}\/\d{1,2}\/\d{2,4}/
   },
   listOfPastMaintenanceDates: {
     type: String,
@@ -90,7 +91,8 @@ const itemSchema = new mongoose.Schema({
       "Seal",
       "Starter Motor",
       "Tires",
-      "Other"
+      "Other",
+      "None"
     ]
   },
   partsAcquiredFromBusinessName: {
@@ -107,7 +109,7 @@ const itemSchema = new mongoose.Schema({
   },
   dateAcquired: {
     type: String,
-    validate: /^[A-Za-z0-9 ]*$/
+    validate: /\d{1,2}\/\d{1,2}\/\d{2,4}/
   },
   requiredSecondaryItem: {
     type: String,
