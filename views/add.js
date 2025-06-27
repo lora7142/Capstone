@@ -35,7 +35,7 @@ export default () => html`
         <div>
           <label for="itemPowerType">Item Power Type*:</label>
           <select name="itemPowerType" id="itemPowerType" required size="1">
-            <option value=""></option>
+            <option value="None">None</option>
             <option value="Battery">Battery</option>
             <option value="Electric">Electric</option>
             <option value="Gas">Gas</option>
@@ -62,7 +62,7 @@ export default () => html`
               id="frequencyOfMaintenance"
               size="1"
             >
-              <option value=""></option>
+              <option value="None"></option>
               <option value="Weekly">Weekly</option>
               <option value="Monthly">Monthly</option>
               <option value="Every 3 Months">Every 3 Months</option>
@@ -96,7 +96,7 @@ export default () => html`
             multiple
             size="1"
           >
-            <option value=""></option>
+            <option value="None"></option>
             <option value="Battery">Battery</option>
             <option value="Belt">Belt</option>
             <option value="Chain">Chain</option>
@@ -114,7 +114,7 @@ export default () => html`
         <div>
           <label for="partsReplaced">Parts Replaced:</label>
           <select name="partsReplaced" id="partsReplaced" multiple size="1">
-            <option value=""></option>
+            <option value="None">None</option>
             <option value="Air Filter">Air Filter</option>
             <option value="Battery">Battery</option>
             <option value="Belt">Belt</option>
