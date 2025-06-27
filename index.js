@@ -144,7 +144,7 @@ router.hooks({
       .then(response => {
       //  Then push the new item onto the Item state items attribute, so it can be displayed in the item list
         store.item.items.push(response.data);
-        router.navigate("/add");
+        router.navigate("/item");
       })
       // If there is an error log it to the console
       .catch(error => {
