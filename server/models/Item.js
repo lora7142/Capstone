@@ -68,7 +68,8 @@ const itemSchema = new mongoose.Schema({
       "Spark Plug Change",
       "Seal",
       "Starter Motor",
-      "Other"
+      "Other",
+      "None"
     ]
   },
   partsReplaced: {
@@ -102,8 +103,7 @@ const itemSchema = new mongoose.Schema({
     type: String
   },
   itemManualURL: {
-    type: String,
-    validate: /^[A-Za-z0-9 ]*$/
+    type: String
   },
   dateAcquired: {
     type: String
