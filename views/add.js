@@ -89,10 +89,10 @@ export default () => html`
           </div>
         </div>
         <div>
-          <label for="LastMaintenanceType">Last Maintenance Type:</label>
+          <label for="lastMaintenanceType">Last Maintenance Type:</label>
           <select
-            name="LastMaintenanceType"
-            id="LastMaintenanceType"
+            name="lastMaintenanceType"
+            id="lastMaintenanceType"
             multiple
             size="1"
           >
