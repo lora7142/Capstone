@@ -100,36 +100,6 @@ router.hooks({
     // create additional if statement for each view that uses a form. possibly target it by form id
     if (view === "add") {
 
-    // event listener to show/hide requires maintenance
-    document.addEventListener('DOMContentLoaded', function() {
-      const toggleRequiredMaintenance = document.getElementById('requiredMaintenance');
-      const requiredMaintenanceFieldsVisibility = document.getElementById('requiredMaintenanceToggle');
-
-      toggleRequiredMaintenance.addEventListener('change', function() {
-        if (this.checked) {
-          requiredMaintenanceFieldsVisibility.style.display = 'block';
-        }
-        else {
-          requiredMaintenanceFieldsVisibility.style.display = 'none';
-        }
-      });
-    });
-
-     // event listener to show/hide second item sections
-    document.addEventListener('DOMContentLoaded', function() {
-      const toggleRequiredSecondaryItem = document.getElementById('requiredSecondaryItem');
-      const requiredSecondaryItemVisibility = document.getElementById('secondaryItemToggle');
-
-      toggleRequiredSecondaryItem.addEventListener('change', function() {
-      if(this.checked) {
-        requiredSecondaryItemVisibility.style.display = 'block';
-      }
-      else {
-        requiredSecondaryItemVisibility.style.display = 'none';
-      }
-      });
-    });
-
     // Add an event handler for the submit button on the form
       document.querySelector("form").addEventListener("submit", event => {
         event.preventDefault();
@@ -164,6 +134,7 @@ router.hooks({
           secondaryAttachmentsForItem: inputList.secondaryAttachmentsForItem.value,
           notes: inputList.notes.value
         };
+
         // Log the request body to the console
         console.log("Request Body", requestData);
 
@@ -180,6 +151,35 @@ router.hooks({
         console.log("It puked", error);
       });
     })
+            // event listener to show/hide requires maintenance
+    document.addEventListener('DOMContentLoaded', function() {
+      const toggleRequiredMaintenance = document.getElementById('requiredMaintenance');
+      const requiredMaintenanceFieldsVisibility = document.getElementById('requiredMaintenanceToggle');
+
+      toggleRequiredMaintenance.addEventListener('change', function() {
+        if (this.checked) {
+          requiredMaintenanceFieldsVisibility.style.display = 'block';
+        }
+        else {
+          requiredMaintenanceFieldsVisibility.style.display = 'none';
+        }
+      });
+    });
+
+     // event listener to show/hide second item section
+    document.addEventListener('DOMContentLoaded', function() {
+      const toggleRequiredSecondaryItem = document.getElementById('requiredSecondaryItem');
+      const requiredSecondaryItemVisibility = document.getElementById('secondaryItemToggle');
+
+      toggleRequiredSecondaryItem.addEventListener('change', function() {
+      if(this.checked) {
+        requiredSecondaryItemVisibility.style.display = 'block';
+      }
+      else {
+        requiredSecondaryItemVisibility.style.display = 'none';
+      }
+      });
+    });
   }
       router.updatePageLinks();
 
