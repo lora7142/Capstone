@@ -143,8 +143,8 @@ router.hooks({
       .post(`${process.env.ITEM_API_URL}/items`, requestData)
       .then(response => {
       //  Then push the new item onto the Item state items attribute, so it can be displayed in the item list
-        store.item.items.push(response.data);
-        router.navigate("/item");
+        store.add.items.push(response.data);
+        router.navigate("/add");
       })
       // If there is an error log it to the console
       .catch(error => {
