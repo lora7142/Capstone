@@ -10,6 +10,8 @@ export default () => html`
         <h2>Main Item Information</h2>
       </div>
       <div class="mainItem">
+        <div><b>* Required</b></div>
+        <div></div>
         <div>
           <label for="itemName">Item Name*:</label>
           <input type="text" name="itemName" id="itemName" required />
