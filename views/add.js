@@ -62,7 +62,7 @@ export default () => html`
               id="frequencyOfMaintenance"
               size="1"
             >
-              <option value="None"></option>
+              <option value="None">None</option>
               <option value="Weekly">Weekly</option>
               <option value="Monthly">Monthly</option>
               <option value="Every 3 Months">Every 3 Months</option>
@@ -96,7 +96,7 @@ export default () => html`
             multiple
             size="1"
           >
-            <option value="None"></option>
+            <option value="None">None</option>
             <option value="Battery">Battery</option>
             <option value="Belt">Belt</option>
             <option value="Chain">Chain</option>
