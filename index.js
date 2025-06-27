@@ -50,14 +50,14 @@ router.hooks({
         done();
       });
       break;
-      case "item":
+      case "add":
               // New Axios get request utilizing already made environment variable
               axios
                 .get(`${process.env.ITEM_API_URL}/items`)
                 .then(response => {
                   // We need to store the response to the state, in the next step but in the meantime let's see what it looks like so that we know what to store from the response.
                   console.log("response", response);
-                  store.item.items = response.data;
+                  store.add.items = response.data;
                   done();
                 })
                 .catch((error) => {
@@ -65,22 +65,6 @@ router.hooks({
                   done();
                 });
                 break;
-      case "report":
-        // New Axios get request utilizing already made environment variable
-        // axios
-        // // need to change this to my own DB when I learn how to connect
-        //   .get(`https://sc-pizza-api.onrender.com/pizzas`)
-        //   .then(response => {
-        //     console.log("response", response);
-        //     store.report.reports = response.data;
-        //     done();
-        //   })
-        //   .catch((error) => {
-        //     console.log("It puked", error);
-        //     done();
-        //   });
-          done();
-          break;
       default:
         // We must call done for all views so we include default for the views that don't have cases above.
         done();

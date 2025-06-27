@@ -48,8 +48,7 @@ const itemSchema = new mongoose.Schema({
     ]
   },
   maintenanceDate: {
-    type: String,
-    validate: /\d{1,2}\/\d{1,2}\/\d{2,4}/
+    type: String
   },
   listOfPastMaintenanceDates: {
     type: String,
@@ -100,16 +99,14 @@ const itemSchema = new mongoose.Schema({
     validate: /^[A-Za-z0-9 ]*$/
   },
   partsAcquiredFromBusinessURL: {
-    type: String,
-    validate: /^[A-Za-z0-9 ]*$/
+    type: String
   },
   itemManualURL: {
     type: String,
     validate: /^[A-Za-z0-9 ]*$/
   },
   dateAcquired: {
-    type: String,
-    validate: /\d{1,2}\/\d{1,2}\/\d{2,4}/
+    type: String
   },
   requiredSecondaryItem: {
     type: String,
