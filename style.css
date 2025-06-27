@@ -87,7 +87,7 @@ main {
 .mainItem {
 display: grid;
 grid-template-columns: repeat(3, 1fr);
-grid-template-rows: repeat(10, 1fr);
+/* grid-template-rows: repeat(11, 1fr); */
 grid-column-gap: 10px;
 grid-row-gap: 10px;
 padding: 20px 0 20px 10px;
@@ -138,15 +138,21 @@ background-color: #F3EFF5;
 .notes label {
 padding-right: 5px;
 }
+.reportHeader {
+  text-align: center;
+}
 #requiredMaintenanceToggle {
   display: none;
+}
+#requiredMaintenanceToggle div {
+  padding: 15px 0 15px 10px;
 }
 .secondaryItem {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(3, 1fr);
+  /* grid-template-rows: repeat(3, 1fr); */
   grid-column-gap: 20px;
-  grid-row-gap: 20px;
+  /* grid-row-gap: 20px; */
   padding: 15px 0 15px 10px;
   margin-top: 10px;
   border: #0D0A0B;
@@ -160,6 +166,9 @@ padding-right: 5px;
 #secondaryItemToggle {
   display: none;
 }
+#secondaryItemToggle div {
+  padding: 15px 0 15px 10px;
+}
 section {
   margin: 0 25px 0 25px;
 }
@@ -172,8 +181,11 @@ section {
   border-radius: 5px;
 }
 .tableButtons {
-margin-left: auto;
-margin-right: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+.updateHeader {
+  text-align: center;
 }
 
 /* When the screen is less than 375 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the navigation (.icon) */
@@ -223,18 +235,24 @@ margin-right: auto;
     padding: 0.5rem;
     list-style-type: none;
   }
+  #requiredMaintenanceToggle div {
+    padding: 15px 0 15px 10px;
+  }
   .secondaryItem {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     grid-template-rows: repeat(10, 1fr);
     grid-row-gap: 5px;
-    padding: 15px 0 15px 10px;
+    padding: 10px 0 10px 10px;
     margin-top: 10px;
     border: #0D0A0B;
     border-style: solid;
     border-width: 1px;
     border-radius: 10px;
   }
+  #secondaryItemToggle div {
+  padding: 10px 0 10px 10px;
+}
 /* The "responsive" class is added to the navigation with JavaScript when the user clicks on the icon. This class makes the navigation look good on small screens (display the links vertically instead of horizontally) */
 /* .nav.responsive {position: relative;}
 .nav.responsive a.icon {
@@ -258,11 +276,11 @@ margin-right: auto;
 
   .mainItem {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(7, 1fr);
+    grid-template-columns: 50% 50%;
+    /* grid-template-rows: repeat(10, 1fr); */
     grid-column-gap: 10px;
-    grid-row-gap: 15px;
-    padding: 25px 0 25px 10px;
+    /* grid-row-gap: 15px; */
+    padding: 10px 0 10px 10px;
     border: #0D0A0B;
     border-style: solid;
     border-width: 1px;
@@ -276,12 +294,15 @@ margin-right: auto;
   nav > .fa-bars {
     display: none;
   }
+  #requiredMaintenanceToggle div {
+    padding: 10px 0 10px 10px;
+  }
   .secondaryItem {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
+    /* grid-template-rows: repeat(2, 1fr); */
     grid-column-gap: 10px;
-    grid-row-gap: 15px;
+    /* grid-row-gap: 15px; */
     padding: 15px 0 15px 10px;
     margin-top: 10px;
     border: #0D0A0B;
@@ -291,5 +312,8 @@ margin-right: auto;
   }
   #secondaryItemToggle {
   display: none;
+}
+#secondaryItemToggle div {
+  padding: 10px 0 10px 10px;
 }
 }
