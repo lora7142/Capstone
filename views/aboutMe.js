@@ -3,6 +3,7 @@ import LoraProfile from "url:../assets/img/profile.png";
 
 export default () => html`
   <section id="about">
+    <h1 class="aboutMeHeader">Biography</h1>
     <img class="headshot" src="${LoraProfile}" alt="Lora Paro Headshot" />
     <table>
       <tr>
@@ -28,7 +29,7 @@ export default () => html`
         <td class="interests">
           <h2>Interests</h2>
           <p>
-            I like to bike, play tennis, play pickle ball, play volleyball,
+            I like to bike, play tennis, play pickleball and volleyball,
             workout, garden, leather craft, and listen to music.
           </p>
         </td>
