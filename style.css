@@ -2,11 +2,20 @@
   width: 40%;
   padding: 50px;
 }
+.aboutMeHeader {
+  text-align: center;
+}
 #add {
   margin-top: 25px;
 }
 #add h1 {
   text-align: center;
+  padding: 15px 0 0 15px;
+  background-image: url(assets/img/leaf.png);
+  background-repeat: no-repeat;
+  background-position: top;
+  height: 75px;
+  color: #F3EFF5;
 }
 body {
   font-family: "Roboto", sans-serif;
@@ -40,12 +49,15 @@ color: #F3EFF5;
   justify-content: center;
 }
 footer {
-  height: 50px;
-  background-color: #72B01D;
-  align-content: center;
-  padding: 0 25px 0 0;
+  height: 100px;
+  /* background-color: #72B01D; */
+  align-content:end;
+  padding: 0 25px 20px 0;
   margin-top: 50px;
   text-align: right;
+  background-image: url(assets/img/grass.png);
+  background-repeat: repeat-x;
+  height: 100px;
 }
 header {
   text-align:center ;

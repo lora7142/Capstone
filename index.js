@@ -17,6 +17,10 @@ function render(state = store.home) {
     router.updatePageLinks();
 }
 
+    function submitConfirm() {
+      alert("The record has been added");
+    }
+
 router.hooks({
   // We pass in the `done` function to the before hook handler to allow the function to tell Navigo we are finished with the before hook.
   // The `match` parameter is the data that is passed from Navigo to the before hook handler with details about the route being accessed.
@@ -50,14 +54,14 @@ router.hooks({
         done();
       });
       break;
-      case "add":
+      case "report":
               // New Axios get request utilizing already made environment variable
               axios
                 .get(`${process.env.ITEM_API_URL}/items`)
                 .then(response => {
                   // We need to store the response to the state, in the next step but in the meantime let's see what it looks like so that we know what to store from the response.
                   console.log("response", response);
-                  store.add.items = response.data;
+                  store.report.items = response.data;
                   done();
                 })
                 .catch((error) => {
@@ -127,7 +131,8 @@ router.hooks({
       .post(`${process.env.ITEM_API_URL}/items`, requestData)
       .then(response => {
       //  Then push the new item onto the Item state items attribute, so it can be displayed in the item list
-        store.add.items.push(response.data);
+        store.report.items.push(response.data);
+        // navigate back to the add page
         router.navigate("/add");
       })
       // If there is an error log it to the console
@@ -135,7 +140,8 @@ router.hooks({
         console.log("It puked", error);
       });
     })
-            // event listener to show/hide requires maintenance
+
+    // event listener to show/hide requires maintenance
     document.addEventListener('DOMContentLoaded', function() {
       const toggleRequiredMaintenance = document.getElementById('requiredMaintenance');
       const requiredMaintenanceFieldsVisibility = document.getElementById('requiredMaintenanceToggle');
@@ -143,6 +149,7 @@ router.hooks({
       toggleRequiredMaintenance.addEventListener('change', function() {
         if (this.checked) {
           requiredMaintenanceFieldsVisibility.style.display = 'block';
+          console.log("clicked");
         }
         else {
           requiredMaintenanceFieldsVisibility.style.display = 'none';
@@ -150,7 +157,7 @@ router.hooks({
       });
     });
 
-     // event listener to show/hide second item section
+    // event listener to show/hide second item section
     document.addEventListener('DOMContentLoaded', function() {
       const toggleRequiredSecondaryItem = document.getElementById('requiredSecondaryItem');
       const requiredSecondaryItemVisibility = document.getElementById('secondaryItemToggle');
@@ -164,6 +171,10 @@ router.hooks({
       }
       });
     });
+
+
+    // event listener to show submit confirm message
+    document.addEventListener("submit", submitConfirm);
   }
       router.updatePageLinks();
 

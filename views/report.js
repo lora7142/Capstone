@@ -3,6 +3,7 @@ import html from "html-literal";
 export default state => html`
   <section id="report">
     <h1 class="reportHeader">List of Items</h1>
+    <h4>Formatting still needs work</h4>
     <table id="reports">
       <tr>
         <th>Item Name</th>
@@ -21,24 +22,24 @@ export default state => html`
         <th>Sec. Attachments</th>
         <th>Notes</th>
       </tr>
-      ${state.reports
-        .map(report => {
+      ${state.items
+        .map(item => {
           return `<tr>
-        <td> ${report.itemName}</td>
-        <td>${report.itemMaker}</td>
-        <td>${report.itemModel}</td>
-        <td>${report.serialNumber}</td>
-        <td>${report.modelNumber}</td>
-        <td>${report.itemPowerType}</td>
-        <td>${report.lastMaintenanceType}</td>
-        <td>${report.partsReplaced}</td>
-        <td>${report.dateAcquired}</td>
-        <td>${report.secondaryItemRelated}</td>
-        <td>${report.secondaryItemMaker}</td>
-        <td>${report.secondaryItemModelNumber}</td>
-        <td>${report.secondaryItemSerialNumber}</td>
-        <td>${report.secondaryAttachmentsForItem}</td>
-        <td>${report.notes}</td>
+        <td> ${item.itemName}</td>
+        <td>${item.itemMaker}</td>
+        <td>${item.itemModel}</td>
+        <td>${item.serialNumber}</td>
+        <td>${item.modelNumber}</td>
+        <td>${item.itemPowerType}</td>
+        <td>${item.lastMaintenanceType}</td>
+        <td>${item.partsReplaced}</td>
+        <td>${item.dateAcquired}</td>
+        <td>${item.secondaryItemRelated}</td>
+        <td>${item.secondaryItemMaker}</td>
+        <td>${item.secondaryItemModelNumber}</td>
+        <td>${item.secondaryItemSerialNumber}</td>
+        <td>${item.secondaryAttachmentsForItem}</td>
+        <td>${item.notes}</td>
         </tr>`;
         })
         .join("")}

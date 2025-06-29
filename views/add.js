@@ -35,7 +35,6 @@ export default () => html`
         <div>
           <label for="itemPowerType">Item Power Type*:</label>
           <select name="itemPowerType" id="itemPowerType" required size="1">
-            <option value="None">None</option>
             <option value="Battery">Battery</option>
             <option value="Electric">Electric</option>
             <option value="Gas">Gas</option>
@@ -46,7 +45,6 @@ export default () => html`
           <input
             type="checkbox"
             name="requiredMaintenance"
-            value="checked"
             id="requiredMaintenance"
             unchecked
           />
@@ -94,7 +92,7 @@ export default () => html`
             name="lastMaintenanceType"
             id="lastMaintenanceType"
             multiple
-            size="1"
+            size="4"
           >
             <option value="None">None</option>
             <option value="Battery">Battery</option>
@@ -113,7 +111,7 @@ export default () => html`
         </div>
         <div>
           <label for="partsReplaced">Parts Replaced:</label>
-          <select name="partsReplaced" id="partsReplaced" multiple size="1">
+          <select name="partsReplaced" id="partsReplaced" multiple size="4">
             <option value="None">None</option>
             <option value="Air Filter">Air Filter</option>
             <option value="Battery">Battery</option>
@@ -170,7 +168,6 @@ export default () => html`
         <input
           type="checkbox"
           name="requiredSecondaryItem"
-          value="checked"
           id="requiredSecondaryItem"
           unchecked
         />
@@ -232,7 +229,7 @@ export default () => html`
         <textarea name="notes" id="notes" cols="40" rows="1"></textarea>
       </div>
       <div>
-        <input type="submit" class="submit" value="Submit" />
+        <input type="submit" class="submit" value="Submit Item" />
       </div>
     </form>
   </section>

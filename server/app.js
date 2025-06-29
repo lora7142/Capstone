@@ -49,7 +49,7 @@ app.get("/status", (request, response) => {
   response.json({ message: "Service healthy" });
 });
 
-// handles any URL hat starts with "/items" ie http://localhost:3000/items
+// handles any URL that starts with "/items" ie http://localhost:3000/items
 app.use("/items", items);
 
 // Tell the Express app to start listening
