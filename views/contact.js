@@ -5,7 +5,7 @@ import LI from "url:../assets/img/LI.png";
 
 export default () => html`
   <section id="contact">
-    <h1>Contact</h1>
+    <h1 class="contactHeader">Contact</h1>
     <div class="name"><b>Lora Paro</b></div>
     <div class="email">
       <b>E: </b><a href="mailto:loraparo@gmail.com">loraparo@gmail.com</a>

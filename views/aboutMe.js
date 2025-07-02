@@ -3,7 +3,7 @@ import LoraProfile from "url:../assets/img/profile.png";
 
 export default () => html`
   <section id="about">
-    <h1 class="aboutMeHeader">Biography</h1>
+    <h1 class="aboutMeHeader">About Me</h1>
     <img class="headshot" src="${LoraProfile}" alt="Lora Paro Headshot" />
     <table>
       <tr>
