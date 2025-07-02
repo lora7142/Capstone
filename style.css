@@ -1,20 +1,28 @@
 .aboutMe {
   width: 40%;
-  padding: 50px;
+  padding: 20px 0 10px 0;
 }
 .aboutMeHeader {
   text-align: center;
+  padding: 45px 0 0 20px;
+  background-image: url(assets/img/leaf.png);
+  background-size: 250px;
+  background-repeat:no-repeat;
+  background-position: top;
+  height: 100px;
+  color: #F3EFF5;
 }
 #add {
   margin-top: 25px;
 }
-#add h1 {
+#add h2 {
   text-align: center;
-  padding: 15px 0 0 15px;
+  padding: 50px 0 0 15px;
   background-image: url(assets/img/leaf.png);
-  background-repeat: no-repeat;
+  background-size: 250px;
+  background-repeat:no-repeat;
   background-position: top;
-  height: 75px;
+  height: 100px;
   color: #F3EFF5;
 }
 body {
@@ -31,6 +39,28 @@ body {
   padding: 10px 15px;
   border-radius: 5px;
   text-decoration: none;
+}
+.contactHeader {
+  text-align: center;
+  padding: 50px 0 0 20px;
+  background-image: url(assets/img/leaf.png);
+  background-size: 250px;
+  background-repeat:no-repeat;
+  background-position: top;
+  height: 100px;
+  color: #F3EFF5;
+}
+.deleteButton {
+  background-color: #72B01D;
+  color: #F3EFF5;
+  display: block;
+  margin: 30px auto;
+  padding: 10px 5px;
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+  border: 2px solid #000000;
+  width: 65%;
 }
 .email {
   padding: 25px 0 25px 0;
@@ -64,7 +94,7 @@ header {
 }
 .headshot {
   border-radius: 50px;
-  margin: 50px 0 0 40px;
+  margin: 20px 0 0 40px;
 }
 #home {
   text-align: center;
@@ -152,6 +182,25 @@ padding-right: 5px;
 }
 .reportHeader {
   text-align: center;
+  padding: 50px 0 0 45px;
+  background-image: url(assets/img/leaf.png);
+  background-size: 250px;
+  background-repeat:no-repeat;
+  background-position: top;
+  height: 100px;
+  color: #F3EFF5;
+}
+.reportStyle {
+  background-color: rgba(114, 176, 29, 0.25);
+  border-color: #000000;
+  border-width: 2px;
+  border-style: double;
+  border-radius: 10px;
+  width: 50%;
+  padding: 15px;
+}
+.reportStyle td:nth-child(odd) {
+  width: 30%;
 }
 #requiredMaintenanceToggle {
   display: none;
@@ -192,12 +241,33 @@ section {
   padding: 10px 15px;
   border-radius: 5px;
 }
+#successMessage {
+  display: none;
+}
 .tableButtons {
   margin-left: auto;
   margin-right: auto;
 }
+.updateButton {
+  background-color: #72B01D;
+  color: #F3EFF5;
+  display: block;
+  margin: 30px auto;
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: 2px solid #000000;
+  text-align: center;
+  cursor: pointer;
+}
 .updateHeader {
   text-align: center;
+  padding: 50px 0 0 45px;
+  background-image: url(assets/img/leaf.png);
+  background-size: 250px;
+  background-repeat:no-repeat;
+  background-position: top;
+  height: 100px;
+  color: #F3EFF5;
 }
 
 /* When the screen is less than 375 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the navigation (.icon) */

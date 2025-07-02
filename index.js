@@ -3,6 +3,7 @@ import * as store from "./store";
 import Navigo from "navigo";
 import { camelCase } from "lodash";
 import axios from "axios";
+import { addDeleteButtonHandler } from "./views/report";
 
 const router = new Navigo("/");
 
@@ -75,12 +76,14 @@ router.hooks({
         // break is not needed since it is the last condition, if you move default higher in the stack then you should add the break statement.
     }
   },
-  already: (match) => {
+  already: async (match) => {
     const view = match?.data?.view ? camelCase(match.data.view) : "home";
 
     render(store[view]);
+
+    if (view === 'report') addDeleteButtonHandler();
   },
-  after: (match) => {
+  after: async (match) => {
     console.log("After hook executing");
     const view = match?.data?.view ? camelCase(match.data.view) : "home";
 
@@ -173,10 +176,27 @@ router.hooks({
     });
 
 
-    // event listener to show submit confirm message
-    document.addEventListener("submit", submitConfirm);
+    // event listener to show submit success message
+    // document.addEventListener("submit", submitConfirm);
+    document.addEventListener('DOMContentLoaded', function() {
+      const form = document.getElementById('add');
+      const successMessage = document.getElementById('successMessage');
+
+      form.addEventListener('submit', function(event) {
+         event.preventDefault();
+
+      successMessage.style.display = 'block';
+    //   setTimeout(function() {
+    //     successMessage.style.display = 'none';
+    // }, 3000); // 3000 milliseconds = 3 seconds
+      });
+    });
   }
       router.updatePageLinks();
+
+    if (view === "report") {
+      addDeleteButtonHandler();
+    }
 
     // add menu toggle to bars icon in nav bar
     document.querySelector(".fa-bars").addEventListener("click", () => {

@@ -2,12 +2,11 @@ import html from "html-literal";
 
 export default () => html`
   <section id="add">
-    <h1>Add</h1>
-    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@need to configure the POST to DB when I learn more about DBs -->
+    <h2>Add</h2>
     <!-- Will look something like this: <form id="order" method="POST" action="https://sc-pizza-api.onrender.com/pizzas/form"> -->
     <form id="add" method="POST">
       <div>
-        <h2>Main Item Information</h2>
+        <h3>Main Item Information</h3>
       </div>
       <div class="mainItem">
         <div><b>* Required</b></div>
@@ -162,7 +161,7 @@ export default () => html`
         </div>
       </div>
       <div>
-        <h2>Secondary Item Information</h2>
+        <h3>Secondary Item Information</h3>
       </div>
       <div>
         <input
@@ -230,6 +229,9 @@ export default () => html`
       </div>
       <div>
         <input type="submit" class="submit" value="Submit Item" />
+      </div>
+      <div id="successMessage">
+        Your item has been successfully entered!
       </div>
     </form>
   </section>
