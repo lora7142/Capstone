@@ -3,6 +3,7 @@ import * as store from "./store";
 import Navigo from "navigo";
 import { camelCase } from "lodash";
 import axios from "axios";
+import { addUpdateButtonHandler } from "./views/report";
 import { addDeleteButtonHandler } from "./views/report";
 
 const router = new Navigo("/");
@@ -81,7 +82,10 @@ router.hooks({
 
     render(store[view]);
 
-    if (view === 'report') addDeleteButtonHandler();
+    if (view === 'report') {
+      addDeleteButtonHandler();
+      addUpdateButtonHandler();
+    }
   },
   after: async (match) => {
     console.log("After hook executing");
@@ -90,7 +94,6 @@ router.hooks({
     // only run on page that has form on it
     // create additional if statement for each view that uses a form. possibly target it by form id
     if (view === "add") {
-
     // Add an event handler for the submit button on the form
       document.querySelector("form").addEventListener("submit", event => {
         event.preventDefault();
@@ -101,12 +104,12 @@ router.hooks({
 
         // Create a request body object to send to the API - list of form fields
         const requestData = {
-          itemName: inputList.itemName.value,
-          itemMaker: inputList.itemMaker.value,
-          itemModel: inputList.itemModel.value,
+          name: inputList.name.value,
+          maker: inputList.maker.value,
+          model: inputList.model.value,
           serialNumber: inputList.serialNumber.value,
           modelNumber: inputList.modelNumber.value,
-          itemPowerType: inputList.itemPowerType.value,
+          powerType: inputList.powerType.value,
           requiredMaintenance: inputList.requiredMaintenance.value,
           frequencyOfMaintenance: inputList.frequencyOfMaintenance.value,
           maintenanceDate:  inputList.maintenanceDate.value,
@@ -115,14 +118,14 @@ router.hooks({
           partsReplaced: inputList.partsReplaced.value,
           partsAcquiredFromBusinessName: inputList.partsAcquiredFromBusinessName.value,
           partsAcquiredFromBusinessURL: inputList.partsAcquiredFromBusinessURL.value,
-          itemManualURL: inputList.itemManualURL.value,
+          manualURL: inputList.manualURL.value,
           dateAcquired: inputList.dateAcquired.value,
-          requiredSecondaryItem: inputList.requiredSecondaryItem.value,
-          secondaryItemRelated: inputList.secondaryItemRelated.value,
-          secondaryItemMaker: inputList.secondaryItemMaker.value,
-          secondaryItemModelNumber: inputList.secondaryItemModelNumber.value,
-          secondaryItemSerialNumber: inputList.secondaryItemSerialNumber.value,
-          secondaryAttachmentsForItem: inputList.secondaryAttachmentsForItem.value,
+          requiredSecondary: inputList.requiredSecondary.value,
+          secondaryRelated: inputList.secondaryRelated.value,
+          secondaryMaker: inputList.secondaryMaker.value,
+          secondaryModelNumber: inputList.secondaryModelNumber.value,
+          secondarySerialNumber: inputList.secondarySerialNumber.value,
+          secondaryAttachments: inputList.secondaryAttachments.value,
           notes: inputList.notes.value
         };
 
@@ -145,7 +148,7 @@ router.hooks({
     })
 
     // event listener to show/hide requires maintenance
-    document.addEventListener('DOMContentLoaded', function() {
+    // document.addEventListener('DOMContentLoaded', function() {
       const toggleRequiredMaintenance = document.getElementById('requiredMaintenance');
       const requiredMaintenanceFieldsVisibility = document.getElementById('requiredMaintenanceToggle');
 
@@ -158,14 +161,14 @@ router.hooks({
           requiredMaintenanceFieldsVisibility.style.display = 'none';
         }
       });
-    });
+    // });
 
     // event listener to show/hide second item section
-    document.addEventListener('DOMContentLoaded', function() {
-      const toggleRequiredSecondaryItem = document.getElementById('requiredSecondaryItem');
+    // document.addEventListener('DOMContentLoaded', function() {
+      const toggleRequiredSecondary = document.getElementById('requiredSecondary');
       const requiredSecondaryItemVisibility = document.getElementById('secondaryItemToggle');
 
-      toggleRequiredSecondaryItem.addEventListener('change', function() {
+      toggleRequiredSecondary.addEventListener('change', function() {
       if(this.checked) {
         requiredSecondaryItemVisibility.style.display = 'block';
       }
@@ -173,29 +176,158 @@ router.hooks({
         requiredSecondaryItemVisibility.style.display = 'none';
       }
       });
-    });
+    // });
 
 
     // event listener to show submit success message
     // document.addEventListener("submit", submitConfirm);
-    document.addEventListener('DOMContentLoaded', function() {
+    // document.addEventListener('DOMContentLoaded', function() {
       const form = document.getElementById('add');
       const successMessage = document.getElementById('successMessage');
 
       form.addEventListener('submit', function(event) {
-         event.preventDefault();
+        event.preventDefault();
 
       successMessage.style.display = 'block';
     //   setTimeout(function() {
     //     successMessage.style.display = 'none';
     // }, 3000); // 3000 milliseconds = 3 seconds
       });
-    });
+    // });
   }
+
+  if (view === "update") {
+    // Add an event handler for the update button on the form
+      document.querySelector("form").addEventListener("update", event => {
+        event.preventDefault();
+
+        // Get the form elements
+        const inputList = event.target.elements;
+        console.log("Input Element List", inputList);
+
+        axios
+        // Create a GET request to the API to get the item info
+        get(`${process.env.ITEM_API_URL}/items`)
+          .then(response => {
+            store.update.items = response.data;
+            // Reload the existing page, firing the already hook
+            // store.global.router.navigate("/update");
+
+
+          //  Get the form elements
+        const inputList = event.target.elements;
+        console.log("Input Element List", inputList);
+
+        // Create a request body object to send to the API - list of form fields
+        const requestData = {
+          name: inputList.name.value,
+          maker: inputList.maker.value,
+          model: inputList.model.value,
+          serialNumber: inputList.serialNumber.value,
+          modelNumber: inputList.modelNumber.value,
+          powerType: inputList.powerType.value,
+          requiredMaintenance: inputList.requiredMaintenance.value,
+          frequencyOfMaintenance: inputList.frequencyOfMaintenance.value,
+          maintenanceDate:  inputList.maintenanceDate.value,
+          listOfPastMaintenanceDates: inputList.listOfPastMaintenanceDates.value,
+          lastMaintenanceType: inputList.lastMaintenanceType.value,
+          partsReplaced: inputList.partsReplaced.value,
+          partsAcquiredFromBusinessName: inputList.partsAcquiredFromBusinessName.value,
+          partsAcquiredFromBusinessURL: inputList.partsAcquiredFromBusinessURL.value,
+          manualURL: inputList.manualURL.value,
+          dateAcquired: inputList.dateAcquired.value,
+          requiredSecondary: inputList.requiredSecondary.value,
+          secondaryRelated: inputList.secondaryRelated.value,
+          secondaryMaker: inputList.secondaryMaker.value,
+          secondaryModelNumber: inputList.secondaryModelNumber.value,
+          secondarySerialNumber: inputList.secondarySerialNumber.value,
+          secondaryAttachments: inputList.secondaryAttachments.value,
+          notes: inputList.notes.value
+        };
+
+        // Log the request body to the console
+        console.log("Request Body", requestData);
+          })
+          .catch(error => {
+            console.error("Error retrieving items", error);
+
+            store.global.router.navigate("/report");
+          });
+
+        // Log the request body to the console
+        console.log("Request Body", requestData);
+
+        // populate the update form with retrieved data
+
+    })
+
+    // event listener to show/hide requires maintenance
+    // document.addEventListener('DOMContentLoaded', function() {
+      const toggleRequiredMaintenance = document.getElementById('requiredMaintenanceUpdate');
+      const requiredMaintenanceFieldsVisibility = document.getElementById('requiredMaintenanceToggleUpdate');
+
+      toggleRequiredMaintenance.addEventListener('change', function() {
+        if (this.checked) {
+          requiredMaintenanceFieldsVisibility.style.display = 'block';
+          console.log("clicked");
+        }
+        else {
+          requiredMaintenanceFieldsVisibility.style.display = 'none';
+        }
+      });
+    // });
+
+    // event listener to show/hide second item section
+    // document.addEventListener('DOMContentLoaded', function() {
+      const toggleRequiredSecondary = document.getElementById('requiredSecondary');
+      const requiredSecondaryItemVisibility = document.getElementById('secondaryItemToggle');
+
+      toggleRequiredSecondary.addEventListener('change', function() {
+      if(this.checked) {
+        requiredSecondaryItemVisibility.style.display = 'block';
+      }
+      else {
+        requiredSecondaryItemVisibility.style.display = 'none';
+      }
+      });
+    // });
+
+
+    // event listener to show submit success message
+    // document.addEventListener("submit", submitConfirm);
+    // document.addEventListener('DOMContentLoaded', function() {
+      const form = document.getElementById('update');
+      const successMessage = document.getElementById('successMessage');
+
+      form.addEventListener('update', function(event) {
+        event.preventDefault();
+
+      axios
+      // Make a PUT request to the API to update the item
+      .put(`${process.env.ITEM_API_URL}/items`, requestData)
+      .then(response => {
+      //  Then push the updated item onto the Item state items attribute, so it can be displayed in the item list
+        store.report.items.push(response.data);
+        // navigate to the report page to view change has been made
+        router.navigate("/report");
+      })
+      // If there is an error log it to the console
+      .catch(error => {
+        console.log("It puked", error);
+      });
+      successMessage.style.display = 'block';
+    //   setTimeout(function() {
+    //     successMessage.style.display = 'none';
+    // }, 3000); // 3000 milliseconds = 3 seconds
+      });
+    // });
+  }
+
       router.updatePageLinks();
 
     if (view === "report") {
       addDeleteButtonHandler();
+      addUpdateButtonHandler();
     }
 
     // add menu toggle to bars icon in nav bar

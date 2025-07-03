@@ -12,16 +12,16 @@ export default () => html`
         <div><b>* Required</b></div>
         <div></div>
         <div>
-          <label for="itemName">Item Name*:</label>
-          <input type="text" name="itemName" id="itemName" required />
+          <label for="name">Item Name*:</label>
+          <input type="text" name="name" id="name" required />
         </div>
         <div>
-          <label for="itemMaker">Item Maker*:</label>
-          <input type="text" name="itemMaker" id="itemMaker" required />
+          <label for="maker">Item Maker*:</label>
+          <input type="text" name="maker" id="maker" required />
         </div>
         <div>
-          <label for="itemModel">Item Model*:</label>
-          <input type="text" name="itemModel" id="itemModel" required />
+          <label for="model">Item Model*:</label>
+          <input type="text" name="model" id="model" required />
         </div>
         <div>
           <label for="serialNumber">Serial Number:</label>
@@ -32,8 +32,8 @@ export default () => html`
           <input type="text" name="modelNumber" id="modelNumber" />
         </div>
         <div>
-          <label for="itemPowerType">Item Power Type*:</label>
-          <select name="itemPowerType" id="itemPowerType" required size="1">
+          <label for="powerType">Item Power Type*:</label>
+          <select name="powerType" id="powerType" required size="1">
             <option value="Battery">Battery</option>
             <option value="Electric">Electric</option>
             <option value="Gas">Gas</option>
@@ -152,8 +152,8 @@ export default () => html`
           />
         </div>
         <div>
-          <label for="itemManualURL">Item Manual URL:</label>
-          <input type="text" name="itemManualURL" id="itemManualURL" />
+          <label for="manualURL">Item Manual URL:</label>
+          <input type="text" name="manualURL" id="manualURL" />
         </div>
         <div>
           <label for="dateAcquired">Date Acquired:</label>
@@ -166,57 +166,49 @@ export default () => html`
       <div>
         <input
           type="checkbox"
-          name="requiredSecondaryItem"
-          id="requiredSecondaryItem"
+          name="requiredSecondary"
+          id="requiredSecondary"
           unchecked
         />
-        <label for="requiredSecondaryItem">Required Secondary Item</label>
+        <label for="requiredSecondary">Required Secondary Item</label>
       </div>
       <div id="secondaryItemToggle">
         <div class="secondaryItem">
           <div>
-            <label for="secondaryItemRelated">Secondary Item Related:</label>
-            <input
-              type="text"
-              name="secondaryItemRelated"
-              id="secondaryItemRelated"
-            />
+            <label for="secondaryRelated">Secondary Item Related:</label>
+            <input type="text" name="secondaryRelated" id="secondaryRelated" />
           </div>
           <div>
-            <label for="secondaryItemMaker">Secondary Item Maker:</label>
-            <input
-              type="text"
-              name="secondaryItemMaker"
-              id="secondaryItemMaker"
-            />
+            <label for="secondaryMaker">Secondary Item Maker:</label>
+            <input type="text" name="secondaryMaker" id="secondaryMaker" />
           </div>
           <div>
-            <label for="secondaryItemModelNumber"
+            <label for="secondaryModelNumber"
               >Secondary Item Model Number:</label
             >
             <input
               type="text"
-              name="SecondaryItemModelNumber"
-              id="secondaryItemModelNumber"
+              name="SecondaryModelNumber"
+              id="secondaryModelNumber"
             />
           </div>
           <div>
-            <label for="secondaryItemSerialNumber"
+            <label for="secondarySerialNumber"
               >Secondary Item Serial Number:</label
             >
             <input
               type="text"
-              name="secondaryItemSerialNumber"
-              id="secondaryItemSerialNumber"
+              name="secondarySerialNumber"
+              id="secondarySerialNumber"
             />
           </div>
           <div>
-            <label for="secondaryAttachmentsForItem"
+            <label for="secondaryAttachments"
               >Secondary Attachments for Item:</label
             >
             <textarea
-              name="secondaryAttachmentsForItem"
-              id="secondaryAttachmentsForItem"
+              name="secondaryAttachments"
+              id="secondaryAttachments"
               cols="40"
               rows="1"
             ></textarea>
