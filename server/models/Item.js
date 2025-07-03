@@ -2,17 +2,17 @@ import mongoose from "mongoose";
 
 // defines the data
 const itemSchema = new mongoose.Schema({
-  itemName: {
+  name: {
     type: String,
     required: true,
     validate: /^[A-Za-z0-9 ]*$/
   },
-  itemMaker: {
+  maker: {
     type: String,
     required: true,
     validate: /^[A-Za-z0-9 ]*$/
   },
-  itemModel: {
+  model: {
     type: String,
     required: true,
     validate: /^[A-Za-z0-9 ]*$/
@@ -25,7 +25,7 @@ const itemSchema = new mongoose.Schema({
     type: String,
     validate: /^[A-Za-z0-9 ]*$/
   },
-  itemPowerType: {
+  powerType: {
     type: String,
     required: true,
     enum: ["Battery", "Electric", "Gas", "Other"]
@@ -102,33 +102,33 @@ const itemSchema = new mongoose.Schema({
   partsAcquiredFromBusinessURL: {
     type: String
   },
-  itemManualURL: {
+  manualURL: {
     type: String
   },
   dateAcquired: {
     type: String
   },
-  requiredSecondaryItem: {
+  requiredSecondary: {
     type: String,
     validate: /^[A-Za-z0-9 ]*$/
   },
-  secondaryItemRelated: {
+  secondaryRelated: {
     type: String,
     validate: /^[A-Za-z0-9 ]*$/
   },
-  secondaryItemMaker: {
+  secondaryMaker: {
     type: String,
     validate: /^[A-Za-z0-9 ]*$/
   },
-  secondaryItemModelNumber: {
+  secondaryModelNumber: {
     type: String,
     validate: /^[A-Za-z0-9 ]*$/
   },
-  secondaryItemSerialNumber: {
+  secondarySerialNumber: {
     type: String,
     validate: /^[A-Za-z0-9 ]*$/
   },
-  secondaryAttachmentsForItem: {
+  secondaryAttachments: {
     type: String,
     validate: /^[A-Za-z0-9 ]*$/
   },

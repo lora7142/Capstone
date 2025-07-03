@@ -106,7 +106,7 @@ header {
 }
 .indexH3 {
   text-align: center;
-  padding: 25px 0 75px 0;
+  padding: 25px 0 25px 0;
 }
 .indexH4 {
   text-align: center;
@@ -125,6 +125,7 @@ main {
   border-bottom-left-radius: 100px;
   padding-top: 25px;
   width: 500px;
+  filter: drop-shadow(10px 10px);
 }
 .mainItem {
 display: grid;
