@@ -1,4 +1,6 @@
 import html from "html-literal";
+import select from "../components";
+import options from "../store";
 
 export default () => html`
   <section id="add">
@@ -68,6 +70,11 @@ export default () => html`
               <option value="Yearly">Yearly</option>
               <option value="Other">Other</option>
             </select>
+            ${select(
+              "frequencyOfMaintenance",
+              "frequencyOfMaintenance",
+              options.frequencyOfMaintenanceVals
+            )}
           </div>
           <div>
             <label for="maintenanceDate">Maintenance Date:</label>
