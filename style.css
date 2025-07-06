@@ -62,6 +62,17 @@ body {
   border: 2px solid #000000;
   width: 65%;
 }
+.editButton {
+  background-color: #72B01D;
+  color: #F3EFF5;
+  display: block;
+  margin: 30px auto;
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: 2px solid #000000;
+  text-align: center;
+  cursor: pointer;
+}
 .email {
   padding: 25px 0 25px 0;
   font-size: 20px;

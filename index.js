@@ -3,7 +3,7 @@ import * as store from "./store";
 import Navigo from "navigo";
 import { camelCase } from "lodash";
 import axios from "axios";
-import { addUpdateButtonHandler } from "./views/report";
+// import { addEditButtonHandler } from "./views/report";
 import { addDeleteButtonHandler } from "./views/report";
 
 const router = new Navigo("/");
@@ -29,6 +29,8 @@ router.hooks({
   // https://github.com/krasimir/navigo/blob/master/DOCUMENTATION.md#match
   before: (done, match) => {
     console.info("Before hook executing");
+    const paramsId = match?.params?.id ? match.params.id : "";
+
     // We need to know what view we are on to know what data to fetch
     const view = match?.data?.view ? camelCase(match.data.view) : "home";
     // Add a switch case statement to handle multiple routes
@@ -56,21 +58,46 @@ router.hooks({
         done();
       });
       break;
+      case "update":
+        axios
+        // Create a GET request to the API to get the item info
+        .get(`${process.env.ITEM_API_URL}/items/${paramsId}`)
+        .then(response => {
+            console.log("in before update");
+            // console.log(`${match.params}`);
+            store.update.items = response.data;
+            console.log("Update List", store.update.items);
+            console.log("Item Name:", store.update.items.name);
+          done();
+          }
+        )
+      .catch((err) => {
+      console.log(err);
+      done();
+      });
+
+      // const myCheckbox = document.getElementById('requiredMaintenance');
+      // if (store.update.items.requiredMaintenance === "on") {
+      //   myCheckbox.checked = true;
+      // } else {
+      //   myCheckbox.checked = false;
+      // }
+      break;
       case "report":
-              // New Axios get request utilizing already made environment variable
-              axios
-                .get(`${process.env.ITEM_API_URL}/items`)
-                .then(response => {
-                  // We need to store the response to the state, in the next step but in the meantime let's see what it looks like so that we know what to store from the response.
-                  console.log("response", response);
-                  store.report.items = response.data;
-                  done();
-                })
-                .catch((error) => {
-                  console.log("It puked", error);
-                  done();
-                });
-                break;
+        // New Axios get request utilizing already made environment variable
+        axios
+          .get(`${process.env.ITEM_API_URL}/items`)
+          .then(response => {
+            // We need to store the response to the state, in the next step but in the meantime let's see what it looks like so that we know what to store from the response.
+            console.log("response", response);
+            store.report.items = response.data;
+            done();
+          })
+          .catch((error) => {
+            console.log("It puked", error);
+            done();
+          });
+          break;
       default:
         // We must call done for all views so we include default for the views that don't have cases above.
         done();
@@ -84,7 +111,7 @@ router.hooks({
 
     if (view === 'report') {
       addDeleteButtonHandler();
-      addUpdateButtonHandler();
+      // addEditButtonHandler();
     }
   },
   after: async (match) => {
@@ -201,68 +228,19 @@ router.hooks({
       document.querySelector("form").addEventListener("update", event => {
         event.preventDefault();
 
-        // Get the form elements
-        const inputList = event.target.elements;
-        console.log("Input Element List", inputList);
+    // Get the form elements
+    const inputList = event.target.elements;
+    console.log("Input Element List", inputList);
+      })
+      .catch(error => {
+        console.error("Error retrieving items", error);
+        router.navigate("/report");
+      });
 
-        axios
-        // Create a GET request to the API to get the item info
-        get(`${process.env.ITEM_API_URL}/items`)
-          .then(response => {
-            store.update.items = response.data;
-            // Reload the existing page, firing the already hook
-            // store.global.router.navigate("/update");
-
-
-          //  Get the form elements
-        const inputList = event.target.elements;
-        console.log("Input Element List", inputList);
-
-        // Create a request body object to send to the API - list of form fields
-        const requestData = {
-          name: inputList.name.value,
-          maker: inputList.maker.value,
-          model: inputList.model.value,
-          serialNumber: inputList.serialNumber.value,
-          modelNumber: inputList.modelNumber.value,
-          powerType: inputList.powerType.value,
-          requiredMaintenance: inputList.requiredMaintenance.value,
-          frequencyOfMaintenance: inputList.frequencyOfMaintenance.value,
-          maintenanceDate:  inputList.maintenanceDate.value,
-          listOfPastMaintenanceDates: inputList.listOfPastMaintenanceDates.value,
-          lastMaintenanceType: inputList.lastMaintenanceType.value,
-          partsReplaced: inputList.partsReplaced.value,
-          partsAcquiredFromBusinessName: inputList.partsAcquiredFromBusinessName.value,
-          partsAcquiredFromBusinessURL: inputList.partsAcquiredFromBusinessURL.value,
-          manualURL: inputList.manualURL.value,
-          dateAcquired: inputList.dateAcquired.value,
-          requiredSecondary: inputList.requiredSecondary.value,
-          secondaryRelated: inputList.secondaryRelated.value,
-          secondaryMaker: inputList.secondaryMaker.value,
-          secondaryModelNumber: inputList.secondaryModelNumber.value,
-          secondarySerialNumber: inputList.secondarySerialNumber.value,
-          secondaryAttachments: inputList.secondaryAttachments.value,
-          notes: inputList.notes.value
-        };
-
-        // Log the request body to the console
-        console.log("Request Body", requestData);
-          })
-          .catch(error => {
-            console.error("Error retrieving items", error);
-
-            store.global.router.navigate("/report");
-          });
-
-        // Log the request body to the console
-        console.log("Request Body", requestData);
-
-        // populate the update form with retrieved data
-
-    })
+    // Log the request body to the console
+    console.log("Request Body", requestData);
 
     // event listener to show/hide requires maintenance
-    // document.addEventListener('DOMContentLoaded', function() {
       const toggleRequiredMaintenance = document.getElementById('requiredMaintenanceUpdate');
       const requiredMaintenanceFieldsVisibility = document.getElementById('requiredMaintenanceToggleUpdate');
 
@@ -275,10 +253,8 @@ router.hooks({
           requiredMaintenanceFieldsVisibility.style.display = 'none';
         }
       });
-    // });
 
     // event listener to show/hide second item section
-    // document.addEventListener('DOMContentLoaded', function() {
       const toggleRequiredSecondary = document.getElementById('requiredSecondary');
       const requiredSecondaryItemVisibility = document.getElementById('secondaryItemToggle');
 
@@ -290,12 +266,8 @@ router.hooks({
         requiredSecondaryItemVisibility.style.display = 'none';
       }
       });
-    // });
-
 
     // event listener to show submit success message
-    // document.addEventListener("submit", submitConfirm);
-    // document.addEventListener('DOMContentLoaded', function() {
       const form = document.getElementById('update');
       const successMessage = document.getElementById('successMessage');
 
@@ -316,20 +288,24 @@ router.hooks({
         console.log("It puked", error);
       });
       successMessage.style.display = 'block';
-    //   setTimeout(function() {
-    //     successMessage.style.display = 'none';
-    // }, 3000); // 3000 milliseconds = 3 seconds
       });
-    // });
   }
 
       router.updatePageLinks();
 
     if (view === "report") {
+      console.log("Report View activated.");
       addDeleteButtonHandler();
-      addUpdateButtonHandler();
-    }
 
+      const updateButtons = document.querySelectorAll(".editButton");
+      updateButtons.forEach(button => {
+        const eventId = button.dataset.id;
+        button.addEventListener("click", () => {
+          router.navigate(`/update?id=${eventId}`);
+          console.log("in update event listener");
+        });
+      })
+    }
     // add menu toggle to bars icon in nav bar
     document.querySelector(".fa-bars").addEventListener("click", () => {
         document.querySelector("nav > ul").classList.toggle("hidden--mobile");
@@ -356,6 +332,14 @@ router.on({
       // If the store
       render(store.viewNotFound);
       console.log(`View ${view} not defined`);
+    }
+  },
+  "/:view/:id": match => {
+    const view = match?.data?.view ? camelCase(match.data.view) : "home";
+    if (view in store) {
+      render(store[view]);
+    } else {
+      render(store.viewNotFound);
     }
   }
 }).resolve(); // fires Navigo off

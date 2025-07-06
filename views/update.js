@@ -1,9 +1,8 @@
 import html from "html-literal";
 import axios from "axios";
 import * as store from "../store";
-import Item from "../server/models/Item";
 
-export default () => html`
+export default state => html`
   <section id="update">
     <h2 class="updateHeader">Update</h2>
     <form id="update">
@@ -15,27 +14,61 @@ export default () => html`
         <div></div>
         <div>
           <label for="name">Item Name*:</label>
-          <input type="text" name="name" id="name" required />
+          <input
+            type="text"
+            name="name"
+            id="name"
+            value=${state.items.name}
+            required
+          />
         </div>
         <div>
           <label for="maker">Item Maker*:</label>
-          <input type="text" name="maker" id="maker" required />
+          <input
+            type="text"
+            name="maker"
+            id="maker"
+            value=${state.items.maker}
+            required
+          />
         </div>
         <div>
           <label for="model">Item Model*:</label>
-          <input type="text" name="model" id="model" required />
+          <input
+            type="text"
+            name="model"
+            id="model"
+            value=${state.items.model}
+            required
+          />
         </div>
         <div>
           <label for="serialNumber">Serial Number:</label>
-          <input type="text" name="serialNumber" id="serialNumber" />
+          <input
+            type="text"
+            name="serialNumber"
+            id="serialNumber"
+            value=${state.items.serialNumber}
+          />
         </div>
         <div>
           <label for="modelNumber">Model Number:</label>
-          <input type="text" name="modelNumber" id="modelNumber" />
+          <input
+            type="text"
+            name="modelNumber"
+            id="modelNumber"
+            value=${state.items.modelNumber}
+          />
         </div>
         <div>
           <label for="powerType">Item Power Type*:</label>
-          <select name="powerType" id="powerType" required size="1">
+          <select
+            name="powerType"
+            id="powerType"
+            required
+            size="1"
+            value=${state.items.powerType}
+          >
             <option value="Battery">Battery</option>
             <option value="Electric">Electric</option>
             <option value="Gas">Gas</option>
@@ -45,9 +78,9 @@ export default () => html`
         <div>
           <input
             type="checkbox"
-            name="requiredMaintenanceUpdate"
-            id="requiredMaintenanceUpdate"
-            unchecked
+            name="requiredMaintenance"
+            id="requiredMaintenance"
+            value=${state.items.requiredMaintenance}
           />
           <label for="requiredMaintenance">Required Maintenance</label>
         </div>
@@ -60,6 +93,7 @@ export default () => html`
               name="frequencyOfMaintenance"
               id="frequencyOfMaintenance"
               size="1"
+              value=${state.items.frequencyOfMaintenance}
             >
               <option value="None">None</option>
               <option value="Weekly">Weekly</option>
@@ -73,7 +107,12 @@ export default () => html`
           </div>
           <div>
             <label for="maintenanceDate">Maintenance Date:</label>
-            <input type="date" id="maintenanceDate" name="trip-start" />
+            <input
+              type="date"
+              id="maintenanceDate"
+              name="trip-start"
+              value=${state.items.maintenanceDate}
+            />
           </div>
           <div>
             <label for="listOfPastMaintenanceDates"
@@ -84,6 +123,7 @@ export default () => html`
               id="listOfPastMaintenanceDates"
               cols="30"
               rows="5"
+              value=${state.items.listOfPastMaintenanceDates}
             ></textarea>
           </div>
         </div>
@@ -94,6 +134,7 @@ export default () => html`
             id="lastMaintenanceType"
             multiple
             size="4"
+            value=${state.items.lastMaintenanceType}
           >
             <option value="None">None</option>
             <option value="Battery">Battery</option>
@@ -112,7 +153,13 @@ export default () => html`
         </div>
         <div>
           <label for="partsReplaced">Parts Replaced:</label>
-          <select name="partsReplaced" id="partsReplaced" multiple size="4">
+          <select
+            name="partsReplaced"
+            id="partsReplaced"
+            multiple
+            size="4"
+            value=${state.items.partsReplaced}
+          >
             <option value="None">None</option>
             <option value="Air Filter">Air Filter</option>
             <option value="Battery">Battery</option>
@@ -141,6 +188,7 @@ export default () => html`
             type="text"
             name="partsAcquiredFromBusinessName"
             id="partsAcquiredFromBusinessName"
+            value=${state.items.partsAcquiredFromBusinessName}
           />
         </div>
         <div>
@@ -151,15 +199,26 @@ export default () => html`
             type="text"
             name="partsAcquiredFromBusinessURL"
             id="partsAcquiredFromBusinessURL"
+            value=${state.items.partsAcquiredFromBusinessURL}
           />
         </div>
         <div>
           <label for="manualURL">Item Manual URL:</label>
-          <input type="text" name="manualURL" id="manualURL" />
+          <input
+            type="text"
+            name="manualURL"
+            id="manualURL"
+            value=${state.items.manualURL}
+          />
         </div>
         <div>
           <label for="dateAcquired">Date Acquired:</label>
-          <input type="date" id="dateAcquired" name="dateAcquired" />
+          <input
+            type="date"
+            id="dateAcquired"
+            name="dateAcquired"
+            value=${state.items.dateAcquired}
+          />
         </div>
       </div>
       <div>
@@ -170,7 +229,7 @@ export default () => html`
           type="checkbox"
           name="requiredSecondaryUpdate"
           id="requiredSecondaryUpdate"
-          unchecked
+          value=${state.items.requiredSecondaryUpdate}
         />
         <label for="requiredSecondary">Required Secondary Item</label>
       </div>
@@ -178,11 +237,21 @@ export default () => html`
         <div class="secondaryItem">
           <div>
             <label for="secondaryRelated">Secondary Item Related:</label>
-            <input type="text" name="secondaryRelated" id="secondaryRelated" />
+            <input
+              type="text"
+              name="secondaryRelated"
+              id="secondaryRelated"
+              value=${state.items.secondaryRelated}
+            />
           </div>
           <div>
             <label for="secondaryMaker">Secondary Item Maker:</label>
-            <input type="text" name="secondaryMaker" id="secondaryMaker" />
+            <input
+              type="text"
+              name="secondaryMaker"
+              id="secondaryMaker"
+              value=${state.items.secondaryMaker}
+            />
           </div>
           <div>
             <label for="secondaryModelNumber"
@@ -192,6 +261,7 @@ export default () => html`
               type="text"
               name="SecondaryModelNumber"
               id="secondaryModelNumber"
+              value=${state.items.secondaryModelNumber}
             />
           </div>
           <div>
@@ -202,6 +272,7 @@ export default () => html`
               type="text"
               name="secondarySerialNumber"
               id="secondarySerialNumber"
+              value=${state.items.secondarySerialNumber}
             />
           </div>
           <div>
@@ -213,16 +284,23 @@ export default () => html`
               id="secondaryAttachments"
               cols="40"
               rows="1"
+              value=${state.items.secondaryAttachments}
             ></textarea>
           </div>
         </div>
       </div>
       <div class="notes">
         <label for="notes">Notes:</label>
-        <textarea name="notes" id="notes" cols="40" rows="1"></textarea>
+        <textarea
+          name="notes"
+          id="notes"
+          cols="40"
+          rows="1"
+          value=${state.items.notes}
+        ></textarea>
       </div>
       <div>
-        <input type="update" class="update" value="Update Item" />
+        <input type="update" class="updateButton" value="Update Item" />
       </div>
       <div id="successMessage">
         Your item has been successfully updated!
