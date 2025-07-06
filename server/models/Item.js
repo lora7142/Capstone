@@ -3,12 +3,12 @@ import mongoose from "mongoose";
 // defines the data
 const itemSchema = new mongoose.Schema({
   name: {
-    type: String,
+    type: [String],
     required: true,
     validate: /^[A-Za-z0-9 ]*$/
   },
   maker: {
-    type: String,
+    type: [String],
     required: true,
     validate: /^[A-Za-z0-9 ]*$/
   },
@@ -31,8 +31,7 @@ const itemSchema = new mongoose.Schema({
     enum: ["Battery", "Electric", "Gas", "Other"]
   },
   requiredMaintenance: {
-    type: String,
-    validate: /^[A-Za-z0-9 ]*$/
+    type: String
   },
   frequencyOfMaintenance: {
     type: String,
@@ -96,7 +95,7 @@ const itemSchema = new mongoose.Schema({
     ]
   },
   partsAcquiredFromBusinessName: {
-    type: String,
+    type: [String],
     validate: /^[A-Za-z0-9 ]*$/
   },
   partsAcquiredFromBusinessURL: {
@@ -109,8 +108,7 @@ const itemSchema = new mongoose.Schema({
     type: String
   },
   requiredSecondary: {
-    type: String,
-    validate: /^[A-Za-z0-9 ]*$/
+    type: String
   },
   secondaryRelated: {
     type: String,
@@ -128,7 +126,7 @@ const itemSchema = new mongoose.Schema({
     type: String,
     validate: /^[A-Za-z0-9 ]*$/
   },
-  secondaryAttachments: {
+  secondaryAttachmentsForItem: {
     type: String,
     validate: /^[A-Za-z0-9 ]*$/
   },

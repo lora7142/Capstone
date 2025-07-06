@@ -15,7 +15,6 @@ export default state => html`
     <h3 class="indexH3">What would you like to do?</h3>
     <table class="tableButtons">
       <tr class="flex-container">
-        <!-- need to figure out the code for buttons to go to different sections -->
         <td class="button">
           <a href="${links[1].text}" title="${links[1].url}"
             >${links[1].text}</a
