@@ -70,6 +70,9 @@ router.hooks({
             console.log("Item Name:", store.update.items.name);
             console.log("Item Notes:", store.update.items.notes);
 
+
+
+
             done();
           }
           )
@@ -77,17 +80,6 @@ router.hooks({
             console.log(err);
             done();
           });
-
-      const mycheckbox1 = document.getElementById('requiredMaintenance');
-      const requiredMaintenanceDBVal = store.update.items.requiredMaintenance;
-      console.log("requiredMaintenance", requiredMaintenanceDBVal);
-
-      if (requiredMaintenanceDBVal === 'on') {
-        mycheckbox1.checked = true;
-        } else {
-          console.warn("checkbox with ID 'requiredMaintenance' not found.");
-        }
-
         break;
       case "report":
         // New Axios get request utilizing already made environment variable
@@ -118,6 +110,8 @@ router.hooks({
     if (view === 'report') {
       addDeleteButtonHandler();
     }
+
+
   },
   after: async (match) => {
     console.log("After hook executing");
@@ -243,8 +237,30 @@ router.hooks({
     }
 
     if (view === "update") {
+        const myCheckbox1 = document.getElementById('requiredMaintenance');
+        const requiredMaintenanceDBVal = store.update.items.requiredMaintenance;
+        // console.log("requiredMaintenance", requiredMaintenanceDBVal);
+        // console.log("myCheckbox", myCheckbox1);
+
+          if (requiredMaintenanceDBVal === 'on') {
+          myCheckbox1.checked = true;
+          } else {
+            console.warn("checkbox with ID 'requiredMaintenance' not found.");
+          }
+
+        const myCheckbox2 = document.getElementById('requiredSecondary');
+        const requiredSecondaryDBVal = store.update.items.requiredSecondary;
+        // console.log("requiredMaintenance", requiredMaintenanceDBVal);
+        // console.log("myCheckbox", myCheckbox1);
+
+          if (requiredSecondaryDBVal === 'on') {
+          myCheckbox2.checked = true;
+          } else {
+            console.warn("checkbox with ID 'requiredSecondary' not found.");
+          }
+
       // Add an event handler for the update button on the form
-      document.querySelector("form").addEventListener("update", event => {
+      document.querySelector("form").addEventListener("submit", event => {
         event.preventDefault();
 
         // Get the form elements
@@ -305,8 +321,6 @@ router.hooks({
           router.navigate("/report");
         });
 
-
-
       // event listener to show/hide requires maintenance
       const toggleRequiredMaintenance = document.getElementById('requiredMaintenanceUpdate');
       const requiredMaintenanceFieldsVisibility = document.getElementById('requiredMaintenanceToggleUpdate');
@@ -338,15 +352,15 @@ router.hooks({
       const form = document.getElementById('update');
       const successMessage = document.getElementById('successMessage');
 
-      form.addEventListener('update', function (event) {
-        event.preventDefault();
+      // form.addEventListener('update', function (event) {
+      //   event.preventDefault();
 
         axios
           // Make a PUT request to the API to update the item
-          .put(`${process.env.ITEM_API_URL}/items`, requestData)
+          .put(`${process.env.ITEM_API_URL}/items/${id}`, requestData)
           .then(response => {
             //  Then push the updated item onto the Item state items attribute, so it can be displayed in the item list
-            store.report.items.push(response.data);
+            // store.report.items.push(response.data);
             // navigate to the report page to view change has been made
             router.navigate("/report");
           })
@@ -354,8 +368,7 @@ router.hooks({
           .catch(error => {
             console.log("It puked", error);
           });
-        successMessage.style.display = 'block';
-      });
+        // successMessage.style.display = 'block';
     }
 
     router.updatePageLinks();

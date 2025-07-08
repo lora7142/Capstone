@@ -183,9 +183,9 @@ export default state => {
         <div>
           <input
             type="checkbox"
-            name="requiredSecondaryUpdate"
-            id="requiredSecondaryUpdate"
-            value=${state.items.requiredSecondaryUpdate}
+            name="requiredSecondary"
+            id="requiredSecondary"
+            value=${state.items.requiredSecondary}
           />
           <label for="requiredSecondary">Required Secondary Item</label>
         </div>
@@ -252,7 +252,7 @@ export default state => {
           ></>
         </div>
         <div>
-          <input type="update" class="updateButton" value="Update Item" />
+          <input type="submit" class="updateButton" value="Update Item" />
         </div>
         <div id="successMessage">
           Your item has been successfully updated!
