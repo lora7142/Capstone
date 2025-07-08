@@ -68,6 +68,8 @@ router.hooks({
             store.update.items = response.data;
             console.log("Update List", store.update.items);
             console.log("Item Name:", store.update.items.name);
+            console.log("Item Notes:", store.update.items.notes);
+
             done();
           }
           )
@@ -76,12 +78,16 @@ router.hooks({
             done();
           });
 
-        // const myCheckbox = document.getElementById('requiredMaintenance');
-        // if (store.update.items.requiredMaintenance === "on") {
-        //   myCheckbox.checked = true;
-        // } else {
-        //   myCheckbox.checked = false;
-        // }
+      const mycheckbox1 = document.getElementById('requiredMaintenance');
+      const requiredMaintenanceDBVal = store.update.items.requiredMaintenance;
+      console.log("requiredMaintenance", requiredMaintenanceDBVal);
+
+      if (requiredMaintenanceDBVal === 'on') {
+        mycheckbox1.checked = true;
+        } else {
+          console.warn("checkbox with ID 'requiredMaintenance' not found.");
+        }
+
         break;
       case "report":
         // New Axios get request utilizing already made environment variable
@@ -111,7 +117,6 @@ router.hooks({
 
     if (view === 'report') {
       addDeleteButtonHandler();
-      // addEditButtonHandler();
     }
   },
   after: async (match) => {
@@ -128,6 +133,7 @@ router.hooks({
         // Get the form elements
         const inputList = event.target.elements;
         console.log("Input Element List", inputList);
+
 
         // Create an empty array to hold the selections
         const lastMaintenanceType = [];
@@ -244,14 +250,62 @@ router.hooks({
         // Get the form elements
         const inputList = event.target.elements;
         console.log("Input Element List", inputList);
+
+        // Create an empty array to hold the selections
+        const lastMaintenanceType = [];
+        const partsReplaced = [];
+
+        // Iterate over the multi-selects
+        for (let input of inputList.lastMaintenanceType) {
+          // If the value of the checked attribute is true then add the value to the array
+          if (input.selected) {
+            lastMaintenanceType.push(input.value);
+          }
+        }
+
+        for (let input of inputList.partsReplaced) {
+          // If the value of the selected attribute is true then add the value to the array
+          if (input.selected) {
+            partsReplaced.push(input.value);
+          }
+        }
+
+        // Create a request body object to send to the API - list of form fields
+        const requestData = {
+          name: inputList.name.value,
+          maker: inputList.maker.value,
+          model: inputList.model.value,
+          serialNumber: inputList.serialNumber.value,
+          modelNumber: inputList.modelNumber.value,
+          powerType: inputList.powerType.value,
+          requiredMaintenance: inputList.requiredMaintenance.value,
+          frequencyOfMaintenance: inputList.frequencyOfMaintenance.value,
+          maintenanceDate: inputList.maintenanceDate.value,
+          listOfPastMaintenanceDates: inputList.listOfPastMaintenanceDates.value,
+          lastMaintenanceType: lastMaintenanceType,
+          partsReplaced: partsReplaced,
+          partsAcquiredFromBusinessName: inputList.partsAcquiredFromBusinessName.value,
+          partsAcquiredFromBusinessURL: inputList.partsAcquiredFromBusinessURL.value,
+          manualURL: inputList.manualURL.value,
+          dateAcquired: inputList.dateAcquired.value,
+          requiredSecondary: inputList.requiredSecondary.value,
+          secondaryRelated: inputList.secondaryRelated.value,
+          secondaryMaker: inputList.secondaryMaker.value,
+          secondaryModelNumber: inputList.secondaryModelNumber.value,
+          secondarySerialNumber: inputList.secondarySerialNumber.value,
+          secondaryAttachments: inputList.secondaryAttachments.value,
+          notes: inputList.notes.value
+        };
+
+        // Log the updated request body to the console
+        console.log("Request Body from Update", requestData);
       })
         .catch(error => {
           console.error("Error retrieving items", error);
           router.navigate("/report");
         });
 
-      // Log the request body to the console
-      console.log("Request Body", requestData);
+
 
       // event listener to show/hide requires maintenance
       const toggleRequiredMaintenance = document.getElementById('requiredMaintenanceUpdate');

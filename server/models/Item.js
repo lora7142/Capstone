@@ -127,7 +127,7 @@ const itemSchema = new mongoose.Schema({
     validate: /^[A-Za-z0-9 ]*$/
   },
   secondaryAttachments: {
-    type: [String]
+    type: String
   },
   notes: String
 });

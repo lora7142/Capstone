@@ -208,7 +208,7 @@ padding-right: 5px;
   border-width: 2px;
   border-style: double;
   border-radius: 10px;
-  width: 50%;
+  width: 75%;
   padding: 15px;
 }
 .reportStyle td:nth-child(odd) {

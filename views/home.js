@@ -21,11 +21,6 @@ export default state => html`
           >
         </td>
         <td class="button">
-          <a href="${links[2].text}" title="${links[2].url}"
-            >${links[2].text}</a
-          >
-        </td>
-        <td class="button">
           <a href="${links[3].text}" title="${links[3].url}"
             >${links[3].text}</a
           >

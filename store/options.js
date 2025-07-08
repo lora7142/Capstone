@@ -9,12 +9,7 @@ export default {
     "Yearly",
     "Other"
   ],
-  // powerTypeVals: [
-  //               <option value="Battery">Battery</option>
-  //           <option value="Electric">Electric</option>
-  //           <option value="Gas">Gas</option>
-  //           <option value="Other">Other</option>
-  // ]
+  powerTypeVals: ["Battery", "Gas", "Electric", "Other"],
   lastMaintenanceTypeVals: [
     "None",
     "Battery",
