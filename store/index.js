@@ -6,3 +6,4 @@ export { default as update } from "./update";
 export { default as report } from "./report";
 export { default as viewNotFound } from "./viewNotFound";
 export { default as links } from "./links";
+export { default as options } from "./options";

@@ -3,27 +3,23 @@ import mongoose from "mongoose";
 // defines the data
 const itemSchema = new mongoose.Schema({
   name: {
-    type: [String],
+    type: String,
     required: true,
     validate: /^[A-Za-z0-9 ]*$/
   },
   maker: {
-    type: [String],
-    required: true,
-    validate: /^[A-Za-z0-9 ]*$/
+    type: String,
+    required: true
   },
   model: {
     type: String,
-    required: true,
-    validate: /^[A-Za-z0-9 ]*$/
+    required: true
   },
   serialNumber: {
-    type: String,
-    validate: /^[A-Za-z0-9 ]*$/
+    type: String
   },
   modelNumber: {
-    type: String,
-    validate: /^[A-Za-z0-9 ]*$/
+    type: String
   },
   powerType: {
     type: String,
@@ -50,11 +46,10 @@ const itemSchema = new mongoose.Schema({
     type: String
   },
   listOfPastMaintenanceDates: {
-    type: String,
-    validate: /^[A-Za-z0-9 ]*$/
+    type: String
   },
   lastMaintenanceType: {
-    type: String,
+    type: [String],
     enum: [
       "Battery",
       "Belt",
@@ -72,7 +67,7 @@ const itemSchema = new mongoose.Schema({
     ]
   },
   partsReplaced: {
-    type: String,
+    type: [String],
     enum: [
       "Air Filter",
       "Battery",
@@ -95,7 +90,7 @@ const itemSchema = new mongoose.Schema({
     ]
   },
   partsAcquiredFromBusinessName: {
-    type: [String],
+    type: String,
     validate: /^[A-Za-z0-9 ]*$/
   },
   partsAcquiredFromBusinessURL: {
@@ -115,22 +110,18 @@ const itemSchema = new mongoose.Schema({
     validate: /^[A-Za-z0-9 ]*$/
   },
   secondaryMaker: {
-    type: String,
-    validate: /^[A-Za-z0-9 ]*$/
+    type: String
   },
   secondaryModelNumber: {
-    type: String,
-    validate: /^[A-Za-z0-9 ]*$/
+    type: String
   },
   secondarySerialNumber: {
-    type: String,
-    validate: /^[A-Za-z0-9 ]*$/
+    type: String
   },
-  secondaryAttachmentsForItem: {
-    type: String,
-    validate: /^[A-Za-z0-9 ]*$/
+  secondaryAttachments: {
+    type: String
   },
-  notes: [String]
+  notes: String
 });
 
 const Item = mongoose.model("Item", itemSchema);

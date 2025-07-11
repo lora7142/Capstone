@@ -1,16 +1,33 @@
-.aboutMe {
+.about-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 1rem;
+}
+/* .aboutMe {
   width: 40%;
-  padding: 20px 0 10px 0;
+  padding: 20px 0 10px 40px;
+} */
+.aboutMe,
+.interests {
+  flex: 1 1 300px; /* Shrinks/grows and wraps on small screens */
 }
 .aboutMeHeader {
   text-align: center;
-  padding: 45px 0 0 20px;
+  padding: 50px 0 0 30px;
   background-image: url(assets/img/leaf.png);
   background-size: 250px;
   background-repeat:no-repeat;
   background-position: top;
   height: 100px;
   color: #F3EFF5;
+}
+.aboutName {
+  padding-left: 50px;
+  font-weight: bolder;
+}
+.aboutSpacer {
+width: 20%;
 }
 #add {
   margin-top: 25px;
@@ -39,10 +56,11 @@ body {
   padding: 10px 15px;
   border-radius: 5px;
   text-decoration: none;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 .contactHeader {
   text-align: center;
-  padding: 50px 0 0 20px;
+  padding: 45px 0 0 30px;
   background-image: url(assets/img/leaf.png);
   background-size: 250px;
   background-repeat:no-repeat;
@@ -61,6 +79,7 @@ body {
   cursor: pointer;
   border: 2px solid #000000;
   width: 65%;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 .editButton {
   background-color: #72B01D;
@@ -72,6 +91,7 @@ body {
   border: 2px solid #000000;
   text-align: center;
   cursor: pointer;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 .email {
   padding: 25px 0 25px 0;
@@ -91,10 +111,9 @@ color: #F3EFF5;
 }
 footer {
   height: 100px;
-  /* background-color: #72B01D; */
   align-content:end;
   padding: 0 25px 20px 0;
-  margin-top: 50px;
+  margin-top: 20px;
   text-align: right;
   background-image: url(assets/img/grass.png);
   background-repeat: repeat-x;
@@ -105,12 +124,12 @@ header {
 }
 .headshot {
   border-radius: 50px;
-  margin: 20px 0 0 40px;
+  margin: 0 0 0 40px;
 }
 #home {
   text-align: center;
 }
-#IG, #LI {
+#GH, #IG, #LI {
   width: 40px;
   height: 40px;
   padding-right: 10px;
@@ -122,10 +141,17 @@ header {
 .indexH4 {
   text-align: center;
 }
-.interests {
-  width: 40%;
-  padding: 50px;
+.info-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 2rem;
 }
+/* .interests {
+  width: 40%;
+  padding: 20px 75px 0 0;
+  align-content: start;
+} */
 main {
   margin: 0 25px 0 25px;
   padding-left: 20px;
@@ -136,7 +162,7 @@ main {
   border-bottom-left-radius: 100px;
   padding-top: 25px;
   width: 500px;
-  filter: drop-shadow(10px 10px);
+  filter: drop-shadow(20px 20px);
 }
 .mainItem {
 display: grid;
@@ -154,8 +180,23 @@ background-color: #F3EFF5;
   padding-right: 5px;
 }
 .name {
-  font-size: 20px;
+  font-size: 30px;
 }
+.nameStyle {
+  color: #F3EFF5;
+  text-shadow: 0 0 5px #72B01D, 0 0 10px #72B01D, 0 0 20px #72B01D, 0 0 40px #72B01D, 0 0 80px #72B01D;
+  animation: glow 1.5s infinite alternate;
+}
+
+@keyframes glow {
+    0% {
+        text-shadow: 0 0 5px #72B01D, 0 0 10px #72B01D, 0 0 20px #72B01D, 0 0 40px #72B01D, 0 0 80px #72B01D;
+    }
+    100% {
+        text-shadow: 0 0 10px #0d0a0b, 0 0 20px #0d0a0b, 0 0 40px #0d0a0b, 0 0 80px #0d0a0b, 0 0 160px #0d0a0b;
+    }
+}
+
 .nav {
   background: #72B01D;
   background: linear-gradient(180deg,rgba(114, 176, 29, 1) 50%, rgba(57, 88, 15, 1) 100%);
@@ -192,9 +233,15 @@ background-color: #F3EFF5;
 .notes label {
 padding-right: 5px;
 }
+.profile-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
 .reportHeader {
   text-align: center;
-  padding: 50px 0 0 45px;
+  padding: 50px 0 0 30px;
   background-image: url(assets/img/leaf.png);
   background-size: 250px;
   background-repeat:no-repeat;
@@ -202,17 +249,21 @@ padding-right: 5px;
   height: 100px;
   color: #F3EFF5;
 }
+.reportRows {
+  padding: 10px 0;
+}
 .reportStyle {
   background-color: rgba(114, 176, 29, 0.25);
   border-color: #000000;
   border-width: 2px;
   border-style: double;
   border-radius: 10px;
-  width: 50%;
-  padding: 15px;
+  width: 100%;
+  padding: 20px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 .reportStyle td:nth-child(odd) {
-  width: 30%;
+  width: 35%;
 }
 #requiredMaintenanceToggle {
   display: none;
@@ -252,6 +303,7 @@ section {
   margin: 30px auto;
   padding: 10px 15px;
   border-radius: 5px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 #successMessage {
   display: none;
@@ -270,6 +322,7 @@ section {
   border: 2px solid #000000;
   text-align: center;
   cursor: pointer;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 .updateHeader {
   text-align: center;
@@ -285,6 +338,11 @@ section {
 /* When the screen is less than 375 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the navigation (.icon) */
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 549px) {
+  .profile-row,
+  .info-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
   .hidden--mobile {
   display: none !important;
   }
@@ -297,7 +355,7 @@ section {
   .mainItem {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
-    grid-template-rows: repeat(16, 1fr);
+    /* grid-template-rows: repeat(16, 1fr); */
     grid-row-gap: 5px;
     padding: 15px 0 15px 10px;
     border: #0D0A0B;
@@ -335,7 +393,7 @@ section {
   .secondaryItem {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
-    grid-template-rows: repeat(10, 1fr);
+    /* grid-template-rows: repeat(10, 1fr); */
     grid-row-gap: 5px;
     padding: 10px 0 10px 10px;
     margin-top: 10px;
@@ -367,7 +425,6 @@ section {
     justify-content: space-evenly;
     padding: 0 0;
   }
-
   .mainItem {
     display: grid;
     grid-template-columns: 50% 50%;
@@ -384,9 +441,18 @@ section {
     display: inline-block;
     text-decoration: none;
   }
-
   nav > .fa-bars {
     display: none;
+  }
+  .reportStyle {
+  background-color: rgba(114, 176, 29, 0.25);
+  border-color: #000000;
+  border-width: 2px;
+  border-style: double;
+  border-radius: 10px;
+  width: 100%;
+  padding: 20px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
   }
   #requiredMaintenanceToggle div {
     padding: 10px 0 10px 10px;
@@ -406,8 +472,50 @@ section {
   }
   #secondaryItemToggle {
   display: none;
+  }
+  #secondaryItemToggle div {
+    padding: 10px 0 10px 10px;
+  }
 }
-#secondaryItemToggle div {
-  padding: 10px 0 10px 10px;
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    .reportStyle {
+  background-color: rgba(114, 176, 29, 0.25);
+  border-color: #000000;
+  border-width: 2px;
+  border-style: double;
+  border-radius: 10px;
+  width: 100%;
+  padding: 20px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  }
 }
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .reportStyle {
+  background-color: rgba(114, 176, 29, 0.25);
+  border-color: #000000;
+  border-width: 2px;
+  border-style: double;
+  border-radius: 10px;
+  width: 100%;
+  padding: 20px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  }
+}
+/* Large devices (laptops/desktops, 1025px and up) */
+@media only screen and (min-width: 1025px) {
+  .reportStyle {
+  background-color: rgba(114, 176, 29, 0.25);
+  border-color: #000000;
+  border-width: 2px;
+  border-style: double;
+  border-radius: 10px;
+  width: 50%;
+  padding: 20px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  }
+  .reportStyle td {
+    padding: 0 0 10px 0;
+  }
 }

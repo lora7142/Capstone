@@ -1,4 +1,6 @@
 import html from "html-literal";
+import { formSelect } from "../components";
+import { options } from "../store";
 
 export default () => html`
   <section id="add">
@@ -33,12 +35,7 @@ export default () => html`
         </div>
         <div>
           <label for="powerType">Item Power Type*:</label>
-          <select name="powerType" id="powerType" required size="1">
-            <option value="Battery">Battery</option>
-            <option value="Electric">Electric</option>
-            <option value="Gas">Gas</option>
-            <option value="Other">Other</option>
-          </select>
+          ${formSelect("powerType", "powerType", options.powerTypeVals)}
         </div>
         <div>
           <input
@@ -54,82 +51,43 @@ export default () => html`
             <label for="frequencyOfMaintenance"
               >Frequency of Maintenance:</label
             >
-            <select
-              name="frequencyOfMaintenance"
-              id="frequencyOfMaintenance"
-              size="1"
-            >
-              <option value="None">None</option>
-              <option value="Weekly">Weekly</option>
-              <option value="Monthly">Monthly</option>
-              <option value="Every 3 Months">Every 3 Months</option>
-              <option value="Every 4 Months">Every 4 Months</option>
-              <option value="Every 6 Months">Every 6 Months</option>
-              <option value="Yearly">Yearly</option>
-              <option value="Other">Other</option>
-            </select>
+            ${formSelect(
+              "frequencyOfMaintenance",
+              "frequencyOfMaintenance",
+              options.frequencyOfMaintenanceVals
+            )}
           </div>
           <div>
             <label for="maintenanceDate">Maintenance Date:</label>
-            <input type="date" id="maintenanceDate" name="trip-start" />
+            <input type="date" id="maintenanceDate" name="maintenanceDate" />
           </div>
           <div>
             <label for="listOfPastMaintenanceDates"
               >List of Past Maintenance Dates:</label
             >
-            <textarea
+            <input
               name="listOfPastMaintenanceDates"
               id="listOfPastMaintenanceDates"
-              cols="30"
-              rows="5"
-            ></textarea>
+            ></>
           </div>
         </div>
         <div>
           <label for="lastMaintenanceType">Last Maintenance Type:</label>
-          <select
-            name="lastMaintenanceType"
-            id="lastMaintenanceType"
-            multiple
-            size="4"
-          >
-            <option value="None">None</option>
-            <option value="Battery">Battery</option>
-            <option value="Belt">Belt</option>
-            <option value="Chain">Chain</option>
-            <option value="Filter">Filter</option>
-            <option value="Fuel Line">Fuel Line</option>
-            <option value="Gasket">Gasket</option>
-            <option value="Oil Change">Oil Change</option>
-            <option value="Primer Bulb">Primer Bulb</option>
-            <option value="Spark Plug Change">Spark Plug Change</option>
-            <option value="Seal">Seal</option>
-            <option value="Starter Motor">Starter Motor</option>
-            <option value="Other">Other</option>
-          </select>
+          ${formSelect(
+            "lastMaintenanceType",
+            "lastMaintenanceType",
+            options.lastMaintenanceTypeVals,
+            true
+          )}
         </div>
         <div>
           <label for="partsReplaced">Parts Replaced:</label>
-          <select name="partsReplaced" id="partsReplaced" multiple size="4">
-            <option value="None">None</option>
-            <option value="Air Filter">Air Filter</option>
-            <option value="Battery">Battery</option>
-            <option value="Belt">Belt</option>
-            <option value="Blade">Blade</option>
-            <option value="Chain">Chain</option>
-            <option value="Fuel Filter">Fuel Filter</option>
-            <option value="Fuel Line">Fuel Line</option>
-            <option value="Gasket">Gasket</option>
-            <option value="Light Bulb">Light Bulb</option>
-            <option value="Oil Filter">Oil Filter</option>
-            <option value="Primer Bulb">Primer Bulb</option>
-            <option value="Recoil Starter Cord">Recoil Starter Cord</option>
-            <option value="Spark Plug">Spark Plug</option>
-            <option value="Seal">Seal</option>
-            <option value="Starter Motor">Starter Motor</option>
-            <option value="Tires">Tires</option>
-            <option value="Other">Other</option>
-          </select>
+          ${formSelect(
+            "partsReplaced",
+            "partsReplaced",
+            options.partsReplacedVals,
+            true
+          )}
         </div>
         <div>
           <label for="partsAcquiredFromBusinessName"
@@ -206,18 +164,16 @@ export default () => html`
             <label for="secondaryAttachments"
               >Secondary Attachments for Item:</label
             >
-            <textarea
+            <input type="text"
               name="secondaryAttachments"
               id="secondaryAttachments"
-              cols="40"
-              rows="1"
-            ></textarea>
+            ></>
           </div>
         </div>
       </div>
       <div class="notes">
         <label for="notes">Notes:</label>
-        <textarea name="notes" id="notes" cols="40" rows="1"></textarea>
+        <input name="notes" id="notes"></>
       </div>
       <div>
         <input type="submit" class="submit" value="Submit Item" />
