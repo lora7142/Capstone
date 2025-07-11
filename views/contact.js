@@ -2,10 +2,11 @@ import html from "html-literal";
 import FB from "url:../assets/img/FB.png";
 import IG from "url:../assets/img/IG.png";
 import LI from "url:../assets/img/LI.png";
+import GH from "url:../assets/img/github.png";
 
 export default () => html`
   <section id="contact">
-    <h1 class="contactHeader">Contact</h1>
+    <h2 class="contactHeader">Contact</h2>
     <div class="name"><b>Lora Paro</b></div>
     <div class="email">
       <b>E: </b><a href="mailto:loraparo@gmail.com">loraparo@gmail.com</a>
@@ -16,6 +17,9 @@ export default () => html`
           <a href="https://www.facebook.com/share/1HE3i7kR3d/?mibextid=wwXIfr"
             ><img id="FB" src="${FB}"
           /></a>
+        </td>
+        <td>
+          <a href="https://github.com/lora7142"><img id="GH" src="${GH}"/></a>
         </td>
         <td>
           <a

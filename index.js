@@ -3,7 +3,6 @@ import * as store from "./store";
 import Navigo from "navigo";
 import { camelCase } from "lodash";
 import axios from "axios";
-// import { addEditButtonHandler } from "./views/report";
 import { addDeleteButtonHandler } from "./views/report";
 
 const router = new Navigo("/");
@@ -64,15 +63,10 @@ router.hooks({
           .get(`${process.env.ITEM_API_URL}/items/${paramsId}`)
           .then(response => {
             console.log("in before update");
-            // console.log(`${match.params}`);
             store.update.items = response.data;
-            console.log("Update List", store.update.items);
-            console.log("Item Name:", store.update.items.name);
-            console.log("Item Notes:", store.update.items.notes);
-
-
-
-
+            // console.log("Update List", store.update.items);
+            // console.log("Item Name:", store.update.items.name);
+            // console.log("Item Notes:", store.update.items.notes);
             done();
           }
           )
@@ -110,8 +104,6 @@ router.hooks({
     if (view === 'report') {
       addDeleteButtonHandler();
     }
-
-
   },
   after: async (match) => {
     console.log("After hook executing");
@@ -127,7 +119,6 @@ router.hooks({
         // Get the form elements
         const inputList = event.target.elements;
         console.log("Input Element List", inputList);
-
 
         // Create an empty array to hold the selections
         const lastMaintenanceType = [];
@@ -239,8 +230,6 @@ router.hooks({
     if (view === "update") {
         const myCheckbox1 = document.getElementById('requiredMaintenance');
         const requiredMaintenanceDBVal = store.update.items.requiredMaintenance;
-        // console.log("requiredMaintenance", requiredMaintenanceDBVal);
-        // console.log("myCheckbox", myCheckbox1);
 
           if (requiredMaintenanceDBVal === 'on') {
           myCheckbox1.checked = true;
@@ -250,14 +239,48 @@ router.hooks({
 
         const myCheckbox2 = document.getElementById('requiredSecondary');
         const requiredSecondaryDBVal = store.update.items.requiredSecondary;
-        // console.log("requiredMaintenance", requiredMaintenanceDBVal);
-        // console.log("myCheckbox", myCheckbox1);
 
           if (requiredSecondaryDBVal === 'on') {
           myCheckbox2.checked = true;
           } else {
             console.warn("checkbox with ID 'requiredSecondary' not found.");
           }
+
+      // event listener to show/hide requires maintenance
+      const toggleRequiredMaintenance = document.getElementById('requiredMaintenance');
+      const requiredMaintenanceFieldsVisibility = document.getElementById('requiredMaintenanceToggleUpdate');
+
+      toggleRequiredMaintenance.addEventListener('change', function () {
+        if (this.checked) {
+          requiredMaintenanceFieldsVisibility.style.display = 'block';
+          console.log("clicked");
+        }
+        else {
+          requiredMaintenanceFieldsVisibility.style.display = 'none';
+        }
+      });
+
+      // event listener to show/hide second item section
+      const toggleRequiredSecondary = document.getElementById('requiredSecondary');
+      const requiredSecondaryItemVisibility = document.getElementById('secondaryItemToggle');
+
+      toggleRequiredSecondary.addEventListener('change', function () {
+        if (this.checked) {
+          requiredSecondaryItemVisibility.style.display = 'block';
+        }
+        else {
+          requiredSecondaryItemVisibility.style.display = 'none';
+        }
+      });
+
+      // event listener to show submit success message
+      const form = document.getElementById('update');
+      const successMessage = document.getElementById('successMessage');
+
+      // successMessage.style.display = 'block';
+      const id = store.update.items._id;
+      console.log("New Info", store.update.items);
+      console.log("id", id);
 
       // Add an event handler for the update button on the form
       document.querySelector("form").addEventListener("submit", event => {
@@ -315,52 +338,11 @@ router.hooks({
 
         // Log the updated request body to the console
         console.log("Request Body from Update", requestData);
-      })
-        .catch(error => {
-          console.error("Error retrieving items", error);
-          router.navigate("/report");
-        });
-
-      // event listener to show/hide requires maintenance
-      const toggleRequiredMaintenance = document.getElementById('requiredMaintenanceUpdate');
-      const requiredMaintenanceFieldsVisibility = document.getElementById('requiredMaintenanceToggleUpdate');
-
-      toggleRequiredMaintenance.addEventListener('change', function () {
-        if (this.checked) {
-          requiredMaintenanceFieldsVisibility.style.display = 'block';
-          console.log("clicked");
-        }
-        else {
-          requiredMaintenanceFieldsVisibility.style.display = 'none';
-        }
-      });
-
-      // event listener to show/hide second item section
-      const toggleRequiredSecondary = document.getElementById('requiredSecondary');
-      const requiredSecondaryItemVisibility = document.getElementById('secondaryItemToggle');
-
-      toggleRequiredSecondary.addEventListener('change', function () {
-        if (this.checked) {
-          requiredSecondaryItemVisibility.style.display = 'block';
-        }
-        else {
-          requiredSecondaryItemVisibility.style.display = 'none';
-        }
-      });
-
-      // event listener to show submit success message
-      const form = document.getElementById('update');
-      const successMessage = document.getElementById('successMessage');
-
-      // form.addEventListener('update', function (event) {
-      //   event.preventDefault();
 
         axios
           // Make a PUT request to the API to update the item
           .put(`${process.env.ITEM_API_URL}/items/${id}`, requestData)
           .then(response => {
-            //  Then push the updated item onto the Item state items attribute, so it can be displayed in the item list
-            // store.report.items.push(response.data);
             // navigate to the report page to view change has been made
             router.navigate("/report");
           })
@@ -368,13 +350,11 @@ router.hooks({
           .catch(error => {
             console.log("It puked", error);
           });
-        // successMessage.style.display = 'block';
+      })
     }
 
-    router.updatePageLinks();
-
     if (view === "report") {
-      console.log("Report View activated.");
+      // console.log("Report View activated.");
       addDeleteButtonHandler();
 
       const updateButtons = document.querySelectorAll(".editButton");
@@ -382,14 +362,16 @@ router.hooks({
         const eventId = button.dataset.id;
         button.addEventListener("click", () => {
           router.navigate(`/update?id=${eventId}`);
-          console.log("in update event listener");
+          // console.log("in update event listener");
         });
       })
     }
     // add menu toggle to bars icon in nav bar
     document.querySelector(".fa-bars").addEventListener("click", () => {
-      document.querySelector("nav > ul").classList.toggle("hidden--mobile");
-    });
+    document.querySelector("nav > ul").classList.toggle("hidden--mobile");
+
+  });
+  router.updatePageLinks();
   }
 });
 

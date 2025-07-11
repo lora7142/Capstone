@@ -9,21 +9,17 @@ const itemSchema = new mongoose.Schema({
   },
   maker: {
     type: String,
-    required: true,
-    validate: /^[A-Za-z0-9 ]*$/
+    required: true
   },
   model: {
     type: String,
-    required: true,
-    validate: /^[A-Za-z0-9 ]*$/
+    required: true
   },
   serialNumber: {
-    type: String,
-    validate: /^[A-Za-z0-9 ]*$/
+    type: String
   },
   modelNumber: {
-    type: String,
-    validate: /^[A-Za-z0-9 ]*$/
+    type: String
   },
   powerType: {
     type: String,
@@ -50,8 +46,7 @@ const itemSchema = new mongoose.Schema({
     type: String
   },
   listOfPastMaintenanceDates: {
-    type: String,
-    validate: /^[A-Za-z0-9 ]*$/
+    type: String
   },
   lastMaintenanceType: {
     type: [String],
@@ -115,16 +110,13 @@ const itemSchema = new mongoose.Schema({
     validate: /^[A-Za-z0-9 ]*$/
   },
   secondaryMaker: {
-    type: String,
-    validate: /^[A-Za-z0-9 ]*$/
+    type: String
   },
   secondaryModelNumber: {
-    type: String,
-    validate: /^[A-Za-z0-9 ]*$/
+    type: String
   },
   secondarySerialNumber: {
-    type: String,
-    validate: /^[A-Za-z0-9 ]*$/
+    type: String
   },
   secondaryAttachments: {
     type: String
