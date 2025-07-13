@@ -7,3 +7,4 @@ export { default as report } from "./report";
 export { default as viewNotFound } from "./viewNotFound";
 export { default as links } from "./links";
 export { default as options } from "./options";
+export { default as global } from "./global";
